@@ -1,19 +1,19 @@
 <?php
 /**
- * Plugin Name: {{plugin-name}}
- * Plugin URI: https://github.com/devgeniem/tms-plugin-boilerplate
- * Description: {{plugin-description}}
- * Version: 1.0.0
+ * Plugin Name: TMS Materials
+ * Plugin URI: https://github.com/devgeniem/tms-plugin-materials
+ * Description: TMS Materials
+ * Version: 0.0.1
  * Requires PHP: 7.4
  * Author: Geniem Oy
  * Author URI: https://geniem.com
  * License: GPL v3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: {{text-domain}}
+ * Text Domain: tms-plugin-materials
  * Domain Path: /languages
  */
 
-use Tms\Plugin\Boilerplate\Plugin;
+use TMS\Plugin\Materials\Plugin;
 
 // Check if Composer has been initialized in this directory.
 // Otherwise we just use global composer autoloading.
@@ -30,13 +30,13 @@ $plugin_path = __DIR__;
 // Initialize the plugin.
 Plugin::init( $plugin_version, $plugin_path );
 
-if ( ! function_exists( 'boilerplate' ) ) {
+if ( ! function_exists( 'tms_plugin_materials' ) ) {
     /**
-     * Get the {{plugin-name}} plugin instance.
+     * Get the plugin instance.
      *
      * @return Plugin
      */
-    function boilerplate() : Plugin {
+    function tms_plugin_materials() : Plugin {
         return Plugin::plugin();
     }
 }
