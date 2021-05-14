@@ -133,6 +133,12 @@ final class Plugin {
     protected function hooks() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
+        add_filter(
+            'pll_get_post_types',
+            \Closure::fromCallable( [ $this, 'add_to_polylang' ] ),
+            10,
+            2
+        );
 
         ( new Material() );
         ( new MaterialType() );
@@ -189,5 +195,18 @@ final class Plugin {
         return file_exists( $this->dist_path . $file )
             ? (int) filemtime( $this->dist_path . $file )
             : $this->version;
+    }
+
+    /**
+     * Add plugin post types to Polylang
+     *
+     * @param array $post_types Registered post types
+     *
+     * @return array
+     */
+    protected function add_to_polylang( $post_types ) {
+        $post_types[ Material::SLUG ] = Material::SLUG;
+
+        return $post_types;
     }
 }
