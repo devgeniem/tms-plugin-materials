@@ -7,6 +7,11 @@ namespace TMS\Plugin\Materials\Taxonomies;
 
 use TMS\Plugin\Materials\PostTypes\Material;
 
+/**
+ * Class MaterialType
+ *
+ * @package TMS\Plugin\Materials\Taxonomies
+ */
 class MaterialType {
 
     /**

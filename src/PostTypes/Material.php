@@ -11,6 +11,11 @@ use Geniem\ACF\Field;
 use Geniem\ACF\RuleGroup;
 use TMS\Theme\Base\Logger;
 
+/**
+ * Class Material
+ *
+ * @package TMS\Plugin\Materials\PostTypes
+ */
 class Material {
 
     /**
@@ -144,6 +149,9 @@ class Material {
         register_post_type( static::SLUG, $args );
     }
 
+    /**
+     * Register fields
+     */
     protected function fields() {
         try {
             $field_group = ( new Group( 'Materiaalin tiedot' ) )
