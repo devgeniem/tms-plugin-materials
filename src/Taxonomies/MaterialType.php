@@ -10,7 +10,7 @@ use TMS\Plugin\Materials\PostTypes\Material;
 /**
  * Class MaterialType
  *
- * @package TMS\Plugin\Materials\Taxonomies
+ * @package TMS\MaterialsPlugin\Materials\Taxonomies
  */
 class MaterialType {
 

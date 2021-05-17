@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning][semver].
 
 ### Added
 
+- TMS-31: Add materials block
 - TMS-60: Register post type material and taxonomy material type
 
 

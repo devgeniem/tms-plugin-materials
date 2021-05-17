@@ -5,20 +5,21 @@
 
 namespace TMS\Plugin\Materials;
 
+use TMS\Plugin\Materials\Blocks\MaterialBlock;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
 
 /**
- * Class Plugin
+ * Class MaterialsPlugin
  *
- * @package TMS\Plugin\Materials
+ * @package TMS\MaterialsPlugin\Materials
  */
-final class Plugin {
+final class MaterialsPlugin {
 
     /**
      * Holds the singleton.
      *
-     * @var Plugin
+     * @var MaterialsPlugin
      */
     protected static $instance;
 
@@ -44,9 +45,9 @@ final class Plugin {
     /**
      * Get the instance.
      *
-     * @return Plugin
+     * @return MaterialsPlugin
      */
-    public static function get_instance() : Plugin {
+    public static function get_instance() : MaterialsPlugin {
         return self::$instance;
     }
 
@@ -100,14 +101,13 @@ final class Plugin {
     public static function init( $version = '', $plugin_path = '' ) {
         if ( empty( self::$instance ) ) {
             self::$instance = new self( $version, $plugin_path );
-            self::$instance->hooks();
         }
     }
 
     /**
      * Get the plugin instance.
      *
-     * @return Plugin
+     * @return MaterialsPlugin
      */
     public static function plugin() {
         return self::$instance;
@@ -125,12 +125,15 @@ final class Plugin {
         $this->plugin_uri  = plugin_dir_url( $plugin_path ) . basename( $this->plugin_path );
         $this->dist_path   = $this->plugin_path . '/assets/dist/';
         $this->dist_uri    = $this->plugin_uri . '/assets/dist/';
+
+        $this->hooks();
     }
 
     /**
      * Add plugin hooks and filters.
      */
     protected function hooks() {
+        add_action( 'init', \Closure::fromCallable( [ $this, 'init_classes' ] ), 0 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
         add_filter(
@@ -139,9 +142,18 @@ final class Plugin {
             10,
             2
         );
+        add_filter( 'dustpress/models', \Closure::fromCallable( [ $this, 'dustpress_models' ] ) );
+        add_filter( 'dustpress/partials', \Closure::fromCallable( [ $this, 'dustpress_partials' ] ) );
 
+    }
+
+    /**
+     * Init classes
+     */
+    protected function init_classes() {
         ( new Material() );
         ( new MaterialType() );
+        ( new MaterialBlock() );
     }
 
     /**
@@ -200,7 +212,7 @@ final class Plugin {
     /**
      * Add plugin post types to Polylang
      *
-     * @param array $post_types Registered post types
+     * @param array $post_types Registered post types.
      *
      * @return array
      */
@@ -208,5 +220,31 @@ final class Plugin {
         $post_types[ Material::SLUG ] = Material::SLUG;
 
         return $post_types;
+    }
+
+    /**
+     * Add this plugin's models directory to DustPress.
+     *
+     * @param array $models The original array.
+     *
+     * @return array
+     */
+    protected function dustpress_models( array $models = [] ) : array {
+        $models[] = $this->plugin_path . '/src/Models/';
+
+        return $models;
+    }
+
+    /**
+     * Add this plugin's partials directory to DustPress.
+     *
+     * @param array $partials The original array.
+     *
+     * @return array
+     */
+    protected function dustpress_partials( array $partials = [] ) : array {
+        $partials[] = $this->plugin_path . '/src/Partials/';
+
+        return $partials;
     }
 }
