@@ -17,10 +17,13 @@
     ],
     "require": {
         "php": ">=7.4|^8",
-        "composer/installers": "^v1.10.0"
+        "composer/installers": "^v1.10.0",
+        "devgeniem/dustpress": "^1.33"
     },
     "autoload": {
-        "psr-4": {"TMS\\Plugin\\Materials\\": "src/"}
+        "psr-4": {
+            "TMS\\Plugin\\Materials\\": "src/"
+        }
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

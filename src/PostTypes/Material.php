@@ -14,7 +14,7 @@ use TMS\Theme\Base\Logger;
 /**
  * Class Material
  *
- * @package TMS\Plugin\Materials\PostTypes
+ * @package TMS\MaterialsPlugin\Materials\PostTypes
  */
 class Material {
 
@@ -62,7 +62,8 @@ class Material {
         // Make possible description text translatable.
         $this->description = _x( 'CPT Description', 'theme CPT', 'tms-plugin-materials' );
 
-        $this->hooks();
+        add_action( 'init', \Closure::fromCallable( [ $this, 'register' ] ), 100, 0 );
+        add_action( 'acf/init', \Closure::fromCallable( [ $this, 'fields' ] ), 50, 0 );
     }
 
     /**
@@ -71,8 +72,6 @@ class Material {
      * @return void
      */
     public function hooks() : void {
-        add_action( 'init', \Closure::fromCallable( [ $this, 'register' ] ), 15 );
-        add_action( 'acf/init', \Closure::fromCallable( [ $this, 'fields' ] ), 15 );
     }
 
     /**
@@ -111,32 +110,25 @@ class Material {
             'filter_items_list'     => 'Suodata listaa',
         ];
 
-        $rewrite = [
-            'slug'       => static::SLUG,
-            'with_front' => false,
-            'pages'      => false,
-            'feeds'      => false,
-        ];
-
         $args = [
             'label'               => $labels['name'],
             'description'         => '',
             'labels'              => $labels,
-            'supports'            => [ 'title', 'revisions', 'custom-fields' ],
+            'supports'            => [ 'title', 'revisions' ],
             'hierarchical'        => false,
-            'public'              => false,
+            'public'              => true,
             'show_ui'             => true,
             'show_in_menu'        => true,
             'menu_position'       => $this->menu_order,
             'menu_icon'           => $this->icon,
             'show_in_admin_bar'   => true,
             'show_in_nav_menus'   => false,
-            'can_export'          => false,
+            'can_export'          => true,
             'has_archive'         => false,
             'exclude_from_search' => false,
-            'publicly_queryable'  => false,
-            'rewrite'             => $rewrite,
+            'publicly_queryable'  => true,
             'capability_type'     => 'material',
+            'query_var'           => true,
             'map_meta_cap'        => true,
             'show_in_rest'        => true,
         ];
@@ -192,6 +184,7 @@ class Material {
             $image_field = ( new Field\Image( $strings['image']['label'] ) )
                 ->set_key( "${key}_image" )
                 ->set_name( 'image' )
+                ->set_return_format( 'id' )
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['image']['instructions'] );
 
