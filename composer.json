@@ -1,5 +1,5 @@
 {
-    "name": "tampere/tms-plugin-material",
+    "name": "devgeniem/tms-plugin-material",
     "type": "wordpress-plugin",
     "license": "GPL-3.0-or-later",
     "description": "Material CPT",
