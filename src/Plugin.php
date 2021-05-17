@@ -3,12 +3,15 @@
  * Copyright (c) 2021 Geniem Oy.
  */
 
-namespace Tms\Plugin\Boilerplate;
+namespace TMS\Plugin\Materials;
+
+use TMS\Plugin\Materials\PostTypes\Material;
+use TMS\Plugin\Materials\Taxonomies\MaterialType;
 
 /**
  * Class Plugin
  *
- * @package Tms\Plugin\Boilerplate
+ * @package TMS\Plugin\Materials
  */
 final class Plugin {
 
@@ -130,6 +133,15 @@ final class Plugin {
     protected function hooks() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
+        add_filter(
+            'pll_get_post_types',
+            \Closure::fromCallable( [ $this, 'add_to_polylang' ] ),
+            10,
+            2
+        );
+
+        ( new Material() );
+        ( new MaterialType() );
     }
 
     /**
@@ -138,7 +150,7 @@ final class Plugin {
     public function enqueue_public_scripts() {
         if ( file_exists( $this->dist_path . 'public.js' ) ) {
             wp_enqueue_script(
-                'boilerplate-public-js',
+                'tms-plugin-materials-public-js',
                 $this->dist_uri . 'public.js',
                 [ 'jquery' ],
                 $this->mod_time( 'public.js' ),
@@ -153,7 +165,7 @@ final class Plugin {
     public function enqueue_admin_scripts() {
         if ( file_exists( $this->dist_path . 'admin.css' ) ) {
             wp_enqueue_style(
-                'boilerplate-admin-css',
+                'tms-plugin-materials-admin-css',
                 $this->dist_uri . 'admin.css',
                 [],
                 $this->mod_time( 'admin.css' ),
@@ -163,7 +175,7 @@ final class Plugin {
 
         if ( file_exists( $this->dist_path . 'admin.js' ) ) {
             wp_enqueue_script(
-                'boilerplate-admin-js',
+                'tms-plugin-materials-admin-js',
                 $this->dist_uri . 'admin.js',
                 [ 'jquery' ],
                 $this->mod_time( 'admin.js' ),
@@ -183,5 +195,18 @@ final class Plugin {
         return file_exists( $this->dist_path . $file )
             ? (int) filemtime( $this->dist_path . $file )
             : $this->version;
+    }
+
+    /**
+     * Add plugin post types to Polylang
+     *
+     * @param array $post_types Registered post types
+     *
+     * @return array
+     */
+    protected function add_to_polylang( $post_types ) {
+        $post_types[ Material::SLUG ] = Material::SLUG;
+
+        return $post_types;
     }
 }
