@@ -1,7 +1,7 @@
 <?php
 /**
- * MaterialsPlugin Name: TMS Materials
- * MaterialsPlugin URI: https://github.com/devgeniem/tms-plugin-materials
+ * Plugin Name: TMS Materials
+ * Plugin URI: https://github.com/devgeniem/tms-plugin-materials
  * Description: TMS Materials
  * Version: 0.0.1
  * Requires PHP: 7.4
