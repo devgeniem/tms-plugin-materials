@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning][semver].
 
 ### Added
 
-- TMS-31: Add materials block
-- TMS-60: Register post type material and taxonomy material type
+- TMS-32: Add file layout for Accordion block #6
+- TMS-31: Add materials block #5
+- TMS-60: Register post type material and taxonomy material type #4
 
 
 [keep-changelog]: http://keepachangelog.com/en/1.0.0/
