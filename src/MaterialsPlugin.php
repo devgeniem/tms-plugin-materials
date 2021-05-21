@@ -145,7 +145,8 @@ final class MaterialsPlugin {
         );
         add_filter( 'dustpress/models', \Closure::fromCallable( [ $this, 'dustpress_models' ] ) );
         add_filter( 'dustpress/partials', \Closure::fromCallable( [ $this, 'dustpress_partials' ] ) );
-
+        add_filter( 'page_template', \Closure::fromCallable( [ $this, 'register_page_template_path' ] ) );
+        add_filter( 'theme_page_templates', \Closure::fromCallable( [ $this, 'register_page_template' ] ) );
     }
 
     /**
@@ -248,5 +249,33 @@ final class MaterialsPlugin {
         $partials[] = $this->plugin_path . '/src/Partials/';
 
         return $partials;
+    }
+
+    /**
+     * Register page-materials.php template path.
+     *
+     * @param string $template Page template name.
+     *
+     * @return string
+     */
+    private function register_page_template_path( string $template ) : string {
+        if ( get_page_template_slug() === 'page-materials.php' ) {
+            $template = $this->plugin_path . '/src/Models/page-materials.php';
+        }
+
+        return $template;
+    }
+
+    /**
+     * Register page-materials.php making it accessible via page template picker.
+     *
+     * @param array $templates Page template choices.
+     *
+     * @return array
+     */
+    private function register_page_template( $templates ) : array {
+        $templates['page-materials.php'] = __( 'Materiaalikirjasto' );
+
+        return $templates;
     }
 }
