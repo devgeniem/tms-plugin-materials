@@ -1,0 +1,13 @@
+{?terms}
+    <ul class="is-unstyled is-flex is-flex-wrap-wrap">
+        {#terms}
+            <li class="p-2">
+                <a
+                    href="{permalink|u}"
+                    class="pt-2 pr-3 pb-2 pl-3 is-style-rounded has-background-black-secondary has-text-black has-border-radius-small {?is_active}is-active{/is_active}">
+                    {name|s}
+                </a>
+            </li>
+        {/terms}
+    </ul>
+{/terms}
