@@ -119,6 +119,7 @@ class PageMaterialsGroup {
         $materials_field = ( new Field\Relationship( $strings['materials']['label'] ) )
             ->set_key( "${key}_materials" )
             ->set_name( 'materials' )
+            ->set_post_types( [ Material::SLUG ] )
             ->set_return_format( 'id' )
             ->set_instructions( $strings['materials']['instructions'] );
 
