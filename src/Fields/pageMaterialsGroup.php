@@ -58,6 +58,7 @@ class PageMaterialsGroup {
                 apply_filters(
                     'tms/acf/group/' . $field_group->get_key() . '/fields',
                     [
+                        $this->get_material_page_description( $field_group->get_key() ),
                         $this->get_materials_field( $field_group->get_key() ),
                         $this->get_material_types_field( $field_group->get_key() ),
                     ]
@@ -74,6 +75,30 @@ class PageMaterialsGroup {
         catch ( Exception $e ) {
             ( new Logger() )->error( $e->getMessage(), $e->getTraceAsString() );
         }
+    }
+
+    /**
+     * Get material page descripton field
+     *
+     * @param string $key Field group key.
+     *
+     * @return Field\Textarea
+     * @throws Exception In case of invalid option.
+     */
+    protected function get_material_page_description( string $key ) : Field\Textarea {
+        $strings = [
+            'description' => [
+                'label'        => _x( 'Kuvausteksti', 'plugin ACF', 'tms-plugin-materials' ),
+                'instructions' => '',
+            ],
+        ];
+
+        $description_field = ( new Field\Textarea( $strings['description']['label'] ) )
+            ->set_key( "${key}_description" )
+            ->set_name( 'description' )
+            ->set_instructions( $strings['description']['instructions'] );
+
+        return $description_field;
     }
 
     /**
