@@ -9,6 +9,7 @@ use Geniem\ACF\Exception;
 use Geniem\ACF\Group;
 use Geniem\ACF\RuleGroup;
 use Geniem\ACF\Field;
+use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Theme\Base\Logger;
 
 /**
@@ -43,10 +44,8 @@ class PageMaterialsGroup {
 
             $field_group
                 ->add_rule_group( $rule_group )
-                ->set_position( 'normal' )
                 ->set_hidden_elements(
                     [
-                        'editor',
                         'discussion',
                         'comments',
                         'format',
@@ -120,6 +119,7 @@ class PageMaterialsGroup {
         $materials_field = ( new Field\Relationship( $strings['materials']['label'] ) )
             ->set_key( "${key}_materials" )
             ->set_name( 'materials' )
+            ->set_return_format( 'id' )
             ->set_instructions( $strings['materials']['instructions'] );
 
         return $materials_field;
@@ -146,7 +146,7 @@ class PageMaterialsGroup {
             ->set_name( 'material_types' )
             ->set_instructions( $strings['material_types']['instructions'] )
             ->set_taxonomy( 'material_type-tax' )
-            ->set_return_format( 'object' );
+            ->set_return_format( 'id' );
 
         return $material_types_field;
     }
