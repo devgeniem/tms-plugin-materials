@@ -3,6 +3,8 @@
  * Template Name: Materiaalikirjasto
  */
 
+use TMS\Plugin\Materials\MaterialsPlugin;
+use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
 
 /**
