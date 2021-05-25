@@ -27,7 +27,7 @@ class PageMaterials extends BaseModel {
      */
     public function strings() : array {
         return [
-            'search' => [
+            'search'     => [
                 'label'             => __( 'Search for materials', 'tms-plugin-materials' ),
                 'submit_value'      => __( 'Search', 'tms-plugin-materials' ),
                 'input_placeholder' => __( 'Search query', 'tms-plugin-materials' ),
