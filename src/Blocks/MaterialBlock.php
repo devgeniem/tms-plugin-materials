@@ -192,25 +192,7 @@ class MaterialBlock {
             $data['anchor'] = $block['anchor'] ?? '';
         }
 
-        $data['items'] = array_filter(
-            array_map( function ( $id ) {
-                $file = get_field( 'file', $id );
-
-                if ( empty( $file ) ) {
-                    return false;
-                }
-
-                return [
-                    'url'         => $file['url'],
-                    'title'       => get_the_title( $id ),
-                    'filesize'    => size_format( $file['filesize'], 2 ),
-                    'filetype'    => $file['subtype'],
-                    'description' => wp_kses_post( get_field( 'description', $id ) ),
-                    'image'       => get_field( 'image', $id ),
-                    'button_text' => __( 'Open', 'tms-plugin-materials' ),
-                ];
-            }, $data['materials'] )
-        );
+        $data['items'] = \PageMaterials::format_materials( $data['materials'] );
 
         $data['is_full_view'] = $data['layout'] === 'rich';
 
