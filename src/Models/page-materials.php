@@ -104,7 +104,7 @@ class PageMaterials extends BaseModel {
             return [];
         }
 
-        return $this->format_materials( $items );
+        return MaterialsPlugin::format_file_items( $items );
     }
 
     /**
@@ -117,9 +117,10 @@ class PageMaterials extends BaseModel {
         $paged    = ! empty( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
         $args = [
-            'post_type'      => TMS\Plugin\Materials\PostTypes\Material::SLUG,
+            'post_type'      => Material::SLUG,
             'posts_per_page' => $per_page,
             'offset'         => ( $paged - 1 ) * $per_page,
+            'fields'         => 'ids',
         ];
 
         if ( ! empty( get_field( 'materials' ) ) ) {
@@ -231,34 +232,5 @@ class PageMaterials extends BaseModel {
         }
 
         return $query_terms;
-    }
-
-    /**
-     * Format material data for frontend.
-     *
-     * @param array $items Material items.
-     *
-     * @return array
-     */
-    public static function format_materials( array $items ) : array {
-        return array_filter(
-            array_map( function ( $id ) {
-                $file = get_field( 'file', $id );
-
-                if ( empty( $file ) ) {
-                    return false;
-                }
-
-                return [
-                    'url'         => $file['url'],
-                    'title'       => get_the_title( $id ),
-                    'filesize'    => size_format( $file['filesize'], 2 ),
-                    'filetype'    => $file['subtype'],
-                    'description' => wp_kses_post( get_field( 'description', $id ) ),
-                    'image'       => get_field( 'image', $id ),
-                    'button_text' => __( 'Open', 'tms-plugin-materials' ),
-                ];
-            }, $items )
-        );
     }
 }

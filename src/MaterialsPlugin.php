@@ -329,12 +329,12 @@ final class MaterialsPlugin {
     /**
      * Format files.
      *
-     * @param array $data Block/Layout data.
+     * @param array $material_ids Material IDs.
      *
      * @return array
      */
-    public static function format_file_items( array $data ) : array {
-        $data['items'] = array_filter(
+    public static function format_file_items( array $material_ids ) : array {
+        return array_filter(
             array_map( function ( $id ) {
                 $file = get_field( 'file', $id );
 
@@ -351,9 +351,7 @@ final class MaterialsPlugin {
                     'image'       => get_field( 'image', $id ),
                     'button_text' => __( 'Open', 'tms-plugin-materials' ),
                 ];
-            }, $data['materials'] )
+            }, $material_ids )
         );
-
-        return $data;
     }
 }
