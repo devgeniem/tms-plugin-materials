@@ -6,6 +6,7 @@
 namespace TMS\Plugin\Materials;
 
 use TMS\Plugin\Materials\Blocks\MaterialBlock;
+use TMS\Plugin\Materials\Layouts\AccordionFileLayout;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
 use TMS\Plugin\Materials\Fields\PageMaterialsGroup;
@@ -148,6 +149,14 @@ final class MaterialsPlugin {
         add_filter( 'page_template', \Closure::fromCallable( [ $this, 'register_page_template_path' ] ) );
         add_filter( 'theme_page_templates', \Closure::fromCallable( [ $this, 'register_page_template' ] ) );
         add_filter( 'query_vars', \Closure::fromCallable( [ $this, 'add_material_search_query_var' ] ) );
+        add_filter(
+            'tms/acf/field/accordion_section_content/layouts',
+            \Closure::fromCallable( [ $this, 'append_accordion_file_layout' ] )
+        );
+        add_filter(
+            'tms/acf/layout/accordion_file/data',
+            \Closure::fromCallable( [ $this, 'format_accordion_file_data' ] )
+        );
     }
 
     /**
@@ -291,5 +300,60 @@ final class MaterialsPlugin {
         $query_vars[] = \PageMaterials::SEARCH_QUERY_VAR;
 
         return $query_vars;
+    }
+
+    /**
+     * Append accordion file layout
+     *
+     * @param array $layouts Flexible Content layouts.
+     *
+     * @return array
+     */
+    protected function append_accordion_file_layout( array $layouts ) : array {
+        $layouts[] = AccordionFileLayout::class;
+
+        return $layouts;
+    }
+
+    /**
+     * Format accordion file data.
+     *
+     * @param array $data Layout data.
+     *
+     * @return array
+     */
+    protected function format_accordion_file_data( array $data ) : array {
+        return static::format_file_items( $data );
+    }
+
+    /**
+     * Format files.
+     *
+     * @param array $data Block/Layout data.
+     *
+     * @return array
+     */
+    public static function format_file_items( array $data ) : array {
+        $data['items'] = array_filter(
+            array_map( function ( $id ) {
+                $file = get_field( 'file', $id );
+
+                if ( empty( $file ) ) {
+                    return false;
+                }
+
+                return [
+                    'url'         => $file['url'],
+                    'title'       => get_the_title( $id ),
+                    'filesize'    => size_format( $file['filesize'], 2 ),
+                    'filetype'    => $file['subtype'],
+                    'description' => wp_kses_post( get_field( 'description', $id ) ),
+                    'image'       => get_field( 'image', $id ),
+                    'button_text' => __( 'Open', 'tms-plugin-materials' ),
+                ];
+            }, $data['materials'] )
+        );
+
+        return $data;
     }
 }
