@@ -147,6 +147,7 @@ final class MaterialsPlugin {
         add_filter( 'dustpress/partials', \Closure::fromCallable( [ $this, 'dustpress_partials' ] ) );
         add_filter( 'page_template', \Closure::fromCallable( [ $this, 'register_page_template_path' ] ) );
         add_filter( 'theme_page_templates', \Closure::fromCallable( [ $this, 'register_page_template' ] ) );
+        add_filter( 'query_vars', \Closure::fromCallable( [ $this, 'add_material_search_query_var' ] ) );
     }
 
     /**
@@ -277,5 +278,18 @@ final class MaterialsPlugin {
         $templates['page-materials.php'] = __( 'Materiaalikirjasto' );
 
         return $templates;
+    }
+
+    /**
+     * Add Materials search query var to query_vars.
+     *
+     * @param array $query_vars WP Query variables.
+     *
+     * @return mixed
+     */
+    protected function add_material_search_query_var( $query_vars ) {
+        $query_vars[] = \PageMaterials::SEARCH_QUERY_VAR;
+
+        return $query_vars;
     }
 }
