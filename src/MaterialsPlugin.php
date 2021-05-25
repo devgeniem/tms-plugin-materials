@@ -9,6 +9,7 @@ use TMS\Plugin\Materials\Blocks\MaterialBlock;
 use TMS\Plugin\Materials\Layouts\AccordionFileLayout;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
+use TMS\Plugin\Materials\Fields\PageMaterialsGroup;
 
 /**
  * Class MaterialsPlugin
@@ -145,6 +146,9 @@ final class MaterialsPlugin {
         );
         add_filter( 'dustpress/models', \Closure::fromCallable( [ $this, 'dustpress_models' ] ) );
         add_filter( 'dustpress/partials', \Closure::fromCallable( [ $this, 'dustpress_partials' ] ) );
+        add_filter( 'page_template', \Closure::fromCallable( [ $this, 'register_page_template_path' ] ) );
+        add_filter( 'theme_page_templates', \Closure::fromCallable( [ $this, 'register_page_template' ] ) );
+        add_filter( 'query_vars', \Closure::fromCallable( [ $this, 'add_material_search_query_var' ] ) );
         add_filter(
             'tms/acf/field/accordion_section_content/layouts',
             \Closure::fromCallable( [ $this, 'append_accordion_file_layout' ] )
@@ -162,6 +166,7 @@ final class MaterialsPlugin {
         ( new Material() );
         ( new MaterialType() );
         ( new MaterialBlock() );
+        ( new PageMaterialsGroup() );
     }
 
     /**
@@ -257,6 +262,47 @@ final class MaterialsPlugin {
     }
 
     /**
+     * Register page-materials.php template path.
+     *
+     * @param string $template Page template name.
+     *
+     * @return string
+     */
+    private function register_page_template_path( string $template ) : string {
+        if ( get_page_template_slug() === 'page-materials.php' ) {
+            $template = $this->plugin_path . '/src/Models/page-materials.php';
+        }
+
+        return $template;
+    }
+
+    /**
+     * Register page-materials.php making it accessible via page template picker.
+     *
+     * @param array $templates Page template choices.
+     *
+     * @return array
+     */
+    private function register_page_template( $templates ) : array {
+        $templates['page-materials.php'] = __( 'Materiaalikirjasto' );
+
+        return $templates;
+    }
+
+    /**
+     * Add Materials search query var to query_vars.
+     *
+     * @param array $query_vars WP Query variables.
+     *
+     * @return mixed
+     */
+    protected function add_material_search_query_var( $query_vars ) {
+        $query_vars[] = \PageMaterials::SEARCH_QUERY_VAR;
+
+        return $query_vars;
+    }
+
+    /**
      * Append accordion file layout
      *
      * @param array $layouts Flexible Content layouts.
@@ -281,14 +327,14 @@ final class MaterialsPlugin {
     }
 
     /**
-     * Format files
+     * Format files.
      *
-     * @param array $data Block/Layout data.
+     * @param array $material_ids Material IDs.
      *
      * @return array
      */
-    public static function format_file_items( array $data ) : array {
-        $data['items'] = array_filter(
+    public static function format_file_items( array $material_ids ) : array {
+        return array_filter(
             array_map( function ( $id ) {
                 $file = get_field( 'file', $id );
 
@@ -305,9 +351,7 @@ final class MaterialsPlugin {
                     'image'       => get_field( 'image', $id ),
                     'button_text' => __( 'Open', 'tms-plugin-materials' ),
                 ];
-            }, $data['materials'] )
+            }, $material_ids )
         );
-
-        return $data;
     }
 }

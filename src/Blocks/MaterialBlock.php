@@ -192,7 +192,10 @@ class MaterialBlock {
             $data['anchor'] = $block['anchor'] ?? '';
         }
 
-        $data                 = MaterialsPlugin::format_file_items( $data );
+        if ( ! empty( $data['materials'] ) ) {
+            $data['items'] = MaterialsPlugin::format_file_items( $data['materials'] );
+        }
+
         $data['is_full_view'] = $data['layout'] === 'rich';
 
         return apply_filters( 'tms/acf/block/' . self::KEY . '/data', $data );
