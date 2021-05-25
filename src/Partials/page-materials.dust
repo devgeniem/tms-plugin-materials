@@ -25,7 +25,7 @@
                         {>"material-type-term-list" /}
                     </div>
 
-                    <div class="column is-6 is-offset-2-desktop is-4-desktop">
+                    <div class="column is-6 is-offset-2-fullhd is-4-fullhd">
                         <form class="p-2" action="{search.action|s}" method="get" role="search">
                             <label class="h6 is-block mb-3" for="material-search">
                                 {strings.search.label|s}
