@@ -19,16 +19,6 @@ class PageMaterials extends \BaseModel {
     const SEARCH_QUERY_VAR = 'material_search';
 
     /**
-     * Return the content.
-     *
-     * @return array|object|WP_Post|null
-     * @throws Exception
-     */
-    public function content() {
-        return \DustPress\Query::get_acf_post( get_the_ID() );
-    }
-
-    /**
      * Return translated strings.
      *
      * @return array[]
