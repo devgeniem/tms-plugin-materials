@@ -17,7 +17,7 @@ use TMS\Theme\Base\Logger;
  *
  * @package TMS\Theme\Base\ACF
  */
-class PageMaterialsGroup {
+class PageMaterialsFieldGroup {
 
     /**
      * PageGroup constructor.

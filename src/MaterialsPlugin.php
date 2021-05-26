@@ -9,7 +9,7 @@ use TMS\Plugin\Materials\Blocks\MaterialBlock;
 use TMS\Plugin\Materials\Layouts\AccordionFileLayout;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
-use TMS\Plugin\Materials\Fields\PageMaterialsGroup;
+use TMS\Plugin\Materials\Fields\PageMaterialsFieldGroup;
 
 /**
  * Class MaterialsPlugin
@@ -166,7 +166,7 @@ final class MaterialsPlugin {
         ( new Material() );
         ( new MaterialType() );
         ( new MaterialBlock() );
-        ( new PageMaterialsGroup() );
+        ( new PageMaterialsFieldGroup() );
     }
 
     /**
