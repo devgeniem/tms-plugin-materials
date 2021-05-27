@@ -10,6 +10,7 @@ use TMS\Plugin\Materials\Layouts\AccordionFileLayout;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
 use TMS\Plugin\Materials\Fields\PageMaterialsFieldGroup;
+use TMS\Theme\Base\Settings;
 
 /**
  * Class MaterialsPlugin
@@ -348,7 +349,9 @@ final class MaterialsPlugin {
                     'filesize'    => size_format( $file['filesize'], 2 ),
                     'filetype'    => $file['subtype'],
                     'description' => wp_kses_post( get_field( 'description', $id ) ),
-                    'image'       => get_field( 'image', $id ),
+                    'image'       => ! empty( get_field( 'image', $id ) )
+                        ? get_field( 'image', $id )
+                        : Settings::get_setting( 'material_default_image' ),
                     'button_text' => __( 'Open', 'tms-plugin-materials' ),
                 ];
             }, $material_ids )

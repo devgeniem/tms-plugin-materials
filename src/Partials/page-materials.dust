@@ -20,56 +20,41 @@
                     </div>
                 </div>
 
-                <div class="columns">
-                    <div class="column is-6 is-flex is-align-items-center">
-                        {>"material-type-term-list" /}
+                {@password}
+                    <div class="columns">
+                        <div class="column is-6 is-flex is-align-items-center">
+                            {>"material-type-term-list" /}
+                        </div>
+
+                        <div class="column is-6 is-offset-2-fullhd is-4-fullhd">
+                            <form class="p-2" action="{search.action|s}" method="get" role="search">
+                                {>"ui/input-text" label=strings.search.label name=search.input_search_name value=search.current_search placeholder=strings.search.input_placeholder /}
+                                {>"ui/button-search-submit" text=strings.search.submit_value /}
+                            </form>
+                        </div>
                     </div>
 
-                    <div class="column is-6 is-offset-2-fullhd is-4-fullhd">
-                        <form class="p-2" action="{search.action|s}" method="get" role="search">
-                            <label class="h6 is-block mb-3" for="material-search">
-                                {strings.search.label|s}
-                            </label>
+                    <div class="columns">
+                        <div class="column is-10-fullhd is-offset-1-fullhd">
+                            {?items}
+                                <ul class="columns is-unstyled is-multiline">
+                                    {#items}
+                                        {>"material-page-item" /}
+                                    {/items}
+                                </ul>
 
-                            <div class="is-flex is-align-items-center">
-                                <input
-                                        id="material-search"
-                                        class="has-border-radius-small p-2 has-text-small has-border-1 has-border-secondary"
-                                        type="text"
-                                        name="{search.input_search_name|s}"
-                                        value="{search.current_search|s}"
-                                        placeholder="{strings.search.input_placeholder|s}">
-
-                                <button class="button button--icon is-small ml-2" type="submit">
-                                    {strings.search.submit_value|s}
-                                    {>"ui/icon" icon="search" class="is-primary-invert" /}
-                                </button>
-                            </div>
-                        </form>
+                            {:else}
+                                <div class="has-text-centered h5 mt-7 mb-7 mt-12-desktop mb-12-desktop">
+                                    {strings.no_results|s}
+                                </div>
+                            {/items}
+                        </div>
                     </div>
-                </div>
 
-
-                <div class="columns">
-                    <div class="column is-10-fullhd is-offset-1-fullhd">
-                        {?items}
-                            <ul class="columns is-unstyled is-multiline">
-                                {#items}
-                                    {>"material-page-item" /}
-                                {/items}
-                            </ul>
-
-                        {:else}
-                            <div class="has-text-centered h5 mt-7 mb-7 mt-12-desktop mb-12-desktop">
-                                {strings.no_results|s}
-                            </div>
-                        {/items}
-                    </div>
-                </div>
-
-                {?pagination}
-                    {@pagination page=pagination.page per_page=pagination.per_page items=pagination.items page_var="paged" /}
-                {/pagination}
+                    {?pagination}
+                        {@pagination page=pagination.page per_page=pagination.per_page items=pagination.items page_var="paged" /}
+                    {/pagination}
+                {/password}
             </div>
         </section>
     </main>
