@@ -64,6 +64,10 @@ class Material {
 
         add_action( 'init', \Closure::fromCallable( [ $this, 'register' ] ), 100, 0 );
         add_action( 'acf/init', \Closure::fromCallable( [ $this, 'fields' ] ), 50, 0 );
+        add_filter(
+            'tms/acf/group/fg_site_settings/fields',
+            \Closure::fromCallable( [ $this, 'add_site_settings_tab' ] )
+        );
     }
 
     /**
@@ -231,5 +235,45 @@ class Material {
         catch ( Exception $e ) {
             ( new Logger() )->error( $e->getMessage(), $e->getTraceAsString() );
         }
+    }
+
+    /**
+     * Add Site Setting fields.
+     *
+     * @param array $fields Site setting fields.
+     *
+     * @return array
+     */
+    protected function add_site_settings_tab( array $fields ) : array {
+        try {
+            $strings = [
+                'tab'                    => 'Materiaalit',
+                'material_default_image' => [
+                    'label'        => 'Oletuskuva',
+                    'instructions' => 'Tiedoston esikatselukuva listauksia varten',
+                ],
+            ];
+
+            $tab = ( new Field\Tab( $strings['tab'] ) )
+                ->set_placement( 'left' );
+
+            $image_field = ( new Field\Image( $strings['material_default_image']['label'] ) )
+                ->set_key( 'fg_site_settings_image' )
+                ->set_name( 'material_default_image' )
+                ->set_return_format( 'id' )
+                ->set_wrapper_width( 50 )
+                ->set_instructions( $strings['material_default_image']['instructions'] );
+
+            $tab->add_fields( [
+                $image_field,
+            ] );
+
+            $fields[] = $tab;
+        }
+        catch ( Exception $e ) {
+            ( new Logger() )->error( $e->getMessage(), $e->getTraceAsString() );
+        }
+
+        return $fields;
     }
 }
