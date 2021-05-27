@@ -7,7 +7,11 @@
                     {?is_active}
                         {>"ui/icon" icon="checkmark" class="icon--medium is-primary-invert mr-2" /}
                     {/is_active}
-                    {name|s}
+                    {@eq key=name value="show_all"}
+                        {strings.terms.show_all|s}
+                    {:else}
+                        {name|s}
+                    {/eq}
                 </a>
             </li>
         {/terms}

@@ -34,6 +34,9 @@ class PageMaterials extends BaseModel {
                 'submit_value'      => __( 'Search', 'tms-plugin-materials' ),
                 'input_placeholder' => __( 'Search query', 'tms-plugin-materials' ),
             ],
+            'terms'      => [
+                'show_all' => __( 'Show All', 'tms-plugin-materials' ),
+            ],
             'no_results' => __( 'No results', 'tms-plugin-materials' ),
         ];
     }
@@ -69,17 +72,17 @@ class PageMaterials extends BaseModel {
      * @return array
      */
     public function terms() : array {
-        $terms = ! empty( get_field( 'material_types' ) )
+        $tax_terms = ! empty( get_field( 'material_types' ) )
             ? get_field( 'material_types' )
             : $this->get_relevant_material_type_terms();
 
-        if ( empty( $terms ) ) {
+        if ( empty( $tax_terms ) ) {
             return [];
         }
 
         $current_term = $this->get_queried_material_type_term();
 
-        return array_map( function ( $term_id ) use ( $current_term ) {
+        $terms = array_map( function ( $term_id ) use ( $current_term ) {
             $term = get_term( $term_id, MaterialType::SLUG );
 
             return [
@@ -91,7 +94,15 @@ class PageMaterials extends BaseModel {
                 ),
                 'is_active' => $term->term_id === (int) $current_term,
             ];
-        }, $terms );
+        }, $tax_terms );
+
+        array_unshift( $terms, [
+            'name'      => 'show_all',
+            'permalink' => get_the_permalink(),
+            'is_active' => empty( $current_term ) && empty( $this->search_data->query ),
+        ] );
+
+        return $terms;
     }
 
     /**
