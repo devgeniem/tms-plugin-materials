@@ -58,8 +58,8 @@ class PageMaterialsFieldGroup {
                     'tms/acf/group/' . $field_group->get_key() . '/fields',
                     [
                         $this->get_material_page_description( $field_group->get_key() ),
-                        $this->get_materials_field( $field_group->get_key() ),
                         $this->get_material_types_field( $field_group->get_key() ),
+                        $this->get_materials_field( $field_group->get_key() ),
                     ]
                 )
             );
@@ -112,7 +112,7 @@ class PageMaterialsFieldGroup {
         $strings = [
             'materials' => [
                 'label'        => _x( 'Materiaalit', 'plugin ACF', 'tms-plugin-materials' ),
-                'instructions' => '',
+                'instructions' => 'Käsin valitut materiaalit yliajavat materiaalityypit -valinnan.',
             ],
         ];
 
@@ -120,6 +120,7 @@ class PageMaterialsFieldGroup {
             ->set_key( "${key}_materials" )
             ->set_name( 'materials' )
             ->set_post_types( [ Material::SLUG ] )
+            ->set_filters( [ 'search' ] )
             ->set_return_format( 'id' )
             ->set_instructions( $strings['materials']['instructions'] );
 
