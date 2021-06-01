@@ -139,12 +139,8 @@ final class MaterialsPlugin {
         add_action( 'init', \Closure::fromCallable( [ $this, 'init_classes' ] ), 0 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
-        add_filter(
-            'pll_get_post_types',
-            \Closure::fromCallable( [ $this, 'add_to_polylang' ] ),
-            10,
-            2
-        );
+        add_filter( 'pll_get_post_types', \Closure::fromCallable( [ $this, 'add_cpt_to_polylang' ] ), 10, 2 );
+        add_filter( 'pll_get_taxonomies', \Closure::fromCallable( [ $this, 'add_tax_to_polylang' ] ), 10, 2 );
         add_filter( 'dustpress/models', \Closure::fromCallable( [ $this, 'dustpress_models' ] ) );
         add_filter( 'dustpress/partials', \Closure::fromCallable( [ $this, 'dustpress_partials' ] ) );
         add_filter( 'page_template', \Closure::fromCallable( [ $this, 'register_page_template_path' ] ) );
@@ -230,10 +226,24 @@ final class MaterialsPlugin {
      *
      * @return array
      */
-    protected function add_to_polylang( $post_types ) {
+    protected function add_cpt_to_polylang( $post_types ) {
         $post_types[ Material::SLUG ] = Material::SLUG;
 
         return $post_types;
+    }
+
+    /**
+     * This adds the taxonomies that are not public to Polylang translation.
+     *
+     * @param array   $tax_types   The taxonomy type array.
+     * @param boolean $is_settings A not used boolean flag to see if we're in settings.
+     *
+     * @return array The modified tax_types -array.
+     */
+    protected function add_tax_to_polylang( $tax_types, $is_settings ) : array { // phpcs:ignore
+        $tax_types[ MaterialType::SLUG ] = MaterialType::SLUG;
+
+        return $tax_types;
     }
 
     /**
