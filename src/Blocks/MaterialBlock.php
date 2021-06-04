@@ -187,7 +187,7 @@ class MaterialBlock {
      *
      * @return array The block data.
      */
-    public function filter_data( $data, $instance, $block, $content, $is_preview, $post_id ) : array {
+    public function filter_data( $data, $instance, $block, $content, $is_preview, $post_id ) : array { // phpcs:ignore
         if ( isset( $this->supports['anchor'] ) && $this->supports['anchor'] ) {
             $data['anchor'] = $block['anchor'] ?? '';
         }
