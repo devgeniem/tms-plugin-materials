@@ -9,6 +9,8 @@ use TMS\Plugin\Materials\Blocks\MaterialBlock;
 use TMS\Plugin\Materials\Layouts\AccordionFileLayout;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
+use TMS\Plugin\Materials\Fields\PageMaterialsFieldGroup;
+use TMS\Theme\Base\Settings;
 
 /**
  * Class MaterialsPlugin
@@ -137,14 +139,13 @@ final class MaterialsPlugin {
         add_action( 'init', \Closure::fromCallable( [ $this, 'init_classes' ] ), 0 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
-        add_filter(
-            'pll_get_post_types',
-            \Closure::fromCallable( [ $this, 'add_to_polylang' ] ),
-            10,
-            2
-        );
+        add_filter( 'pll_get_post_types', \Closure::fromCallable( [ $this, 'add_cpt_to_polylang' ] ), 10, 2 );
+        add_filter( 'pll_get_taxonomies', \Closure::fromCallable( [ $this, 'add_tax_to_polylang' ] ), 10, 2 );
         add_filter( 'dustpress/models', \Closure::fromCallable( [ $this, 'dustpress_models' ] ) );
         add_filter( 'dustpress/partials', \Closure::fromCallable( [ $this, 'dustpress_partials' ] ) );
+        add_filter( 'page_template', \Closure::fromCallable( [ $this, 'register_page_template_path' ] ) );
+        add_filter( 'theme_page_templates', \Closure::fromCallable( [ $this, 'register_page_template' ] ) );
+        add_filter( 'query_vars', \Closure::fromCallable( [ $this, 'add_material_search_query_var' ] ) );
         add_filter(
             'tms/acf/field/accordion_section_content/layouts',
             \Closure::fromCallable( [ $this, 'append_accordion_file_layout' ] )
@@ -162,6 +163,7 @@ final class MaterialsPlugin {
         ( new Material() );
         ( new MaterialType() );
         ( new MaterialBlock() );
+        ( new PageMaterialsFieldGroup() );
     }
 
     /**
@@ -224,10 +226,24 @@ final class MaterialsPlugin {
      *
      * @return array
      */
-    protected function add_to_polylang( $post_types ) {
+    protected function add_cpt_to_polylang( $post_types ) {
         $post_types[ Material::SLUG ] = Material::SLUG;
 
         return $post_types;
+    }
+
+    /**
+     * This adds the taxonomies that are not public to Polylang translation.
+     *
+     * @param array   $tax_types   The taxonomy type array.
+     * @param boolean $is_settings A not used boolean flag to see if we're in settings.
+     *
+     * @return array The modified tax_types -array.
+     */
+    protected function add_tax_to_polylang( $tax_types, $is_settings ) : array { // phpcs:ignore
+        $tax_types[ MaterialType::SLUG ] = MaterialType::SLUG;
+
+        return $tax_types;
     }
 
     /**
@@ -257,6 +273,47 @@ final class MaterialsPlugin {
     }
 
     /**
+     * Register page-materials.php template path.
+     *
+     * @param string $template Page template name.
+     *
+     * @return string
+     */
+    private function register_page_template_path( string $template ) : string {
+        if ( get_page_template_slug() === 'page-materials.php' ) {
+            $template = $this->plugin_path . '/src/Models/page-materials.php';
+        }
+
+        return $template;
+    }
+
+    /**
+     * Register page-materials.php making it accessible via page template picker.
+     *
+     * @param array $templates Page template choices.
+     *
+     * @return array
+     */
+    private function register_page_template( $templates ) : array {
+        $templates['page-materials.php'] = __( 'Materiaalikirjasto' );
+
+        return $templates;
+    }
+
+    /**
+     * Add Materials search query var to query_vars.
+     *
+     * @param array $query_vars WP Query variables.
+     *
+     * @return mixed
+     */
+    protected function add_material_search_query_var( $query_vars ) {
+        $query_vars[] = \PageMaterials::SEARCH_QUERY_VAR;
+
+        return $query_vars;
+    }
+
+    /**
      * Append accordion file layout
      *
      * @param array $layouts Flexible Content layouts.
@@ -281,14 +338,14 @@ final class MaterialsPlugin {
     }
 
     /**
-     * Format files
+     * Format files.
      *
-     * @param array $data Block/Layout data.
+     * @param array $material_ids Material IDs.
      *
      * @return array
      */
-    public static function format_file_items( array $data ) : array {
-        $data['items'] = array_filter(
+    public static function format_file_items( array $material_ids ) : array {
+        return array_filter(
             array_map( function ( $id ) {
                 $file = get_field( 'file', $id );
 
@@ -302,12 +359,12 @@ final class MaterialsPlugin {
                     'filesize'    => size_format( $file['filesize'], 2 ),
                     'filetype'    => $file['subtype'],
                     'description' => wp_kses_post( get_field( 'description', $id ) ),
-                    'image'       => get_field( 'image', $id ),
+                    'image'       => ! empty( get_field( 'image', $id ) )
+                        ? get_field( 'image', $id )
+                        : Settings::get_setting( 'material_default_image' ),
                     'button_text' => __( 'Open', 'tms-plugin-materials' ),
                 ];
-            }, $data['materials'] )
+            }, $material_ids )
         );
-
-        return $data;
     }
 }

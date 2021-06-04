@@ -187,12 +187,15 @@ class MaterialBlock {
      *
      * @return array The block data.
      */
-    public function filter_data( $data, $instance, $block, $content, $is_preview, $post_id ) : array {
+    public function filter_data( $data, $instance, $block, $content, $is_preview, $post_id ) : array { // phpcs:ignore
         if ( isset( $this->supports['anchor'] ) && $this->supports['anchor'] ) {
             $data['anchor'] = $block['anchor'] ?? '';
         }
 
-        $data                 = MaterialsPlugin::format_file_items( $data );
+        if ( ! empty( $data['materials'] ) ) {
+            $data['items'] = MaterialsPlugin::format_file_items( $data['materials'] );
+        }
+
         $data['is_full_view'] = $data['layout'] === 'rich';
 
         return apply_filters( 'tms/acf/block/' . self::KEY . '/data', $data );
