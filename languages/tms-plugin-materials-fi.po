@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: TMS Materials\n"
+"POT-Creation-Date: 2021-06-15 11:22+0300\n"
+"PO-Revision-Date: 2021-06-15 11:24+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: fi\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+
+#: src/Fields/PageMaterialsFieldGroup.php:37
+#: src/Fields/PageMaterialsFieldGroup.php:114
+msgctxt "plugin ACF"
+msgid "Materiaalit"
+msgstr "Materiaalit"
+
+#: src/Fields/PageMaterialsFieldGroup.php:90
+msgctxt "plugin ACF"
+msgid "Kuvausteksti"
+msgstr "Kuvausteksti"
+
+#: src/Fields/PageMaterialsFieldGroup.php:141
+msgctxt "plugin ACF"
+msgid "Materiaalityypit"
+msgstr "Materiaalityypit"
+
+#: src/MaterialsPlugin.php:298
+msgid "Materiaalikirjasto"
+msgstr "Materiaalikirjasto"
+
+#: src/MaterialsPlugin.php:365
+msgid "Open"
+msgstr "Avaa"
+
+#: src/Models/page-materials.php:33
+msgid "Search for materials"
+msgstr "Hae materiaaleista"
+
+#: src/Models/page-materials.php:34
+msgid "Search"
+msgstr "Hae"
+
+#: src/Models/page-materials.php:35
+msgid "Search query"
+msgstr "Kirjoita hakusanat"
+
+#: src/Models/page-materials.php:38
+msgid "Show All"
+msgstr "Kaikki"
+
+#: src/Models/page-materials.php:40
+msgid "No results"
+msgstr "Ei tuloksia"
+
+#: src/PostTypes/Material.php:60
+msgctxt "theme CPT slugs"
+msgid "materials"
+msgstr ""
+
+#: src/PostTypes/Material.php:63
+msgctxt "theme CPT"
+msgid "CPT Description"
+msgstr ""
+
+#: src/Taxonomies/MaterialType.php:45
+msgid "Separate departments with commas"
+msgstr ""
+
+#: src/Taxonomies/MaterialType.php:46
+msgid "Add or remove departments"
+msgstr ""
+
+#: src/Taxonomies/MaterialType.php:47
+msgid "Choose from most used departments"
+msgstr ""
+
+#: src/Taxonomies/MaterialType.php:48
+msgid "Popular departments"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#. Description of the plugin/theme
+msgid "TMS Materials"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/devgeniem/tms-plugin-materials"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Geniem Oy"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://geniem.com"
+msgstr ""

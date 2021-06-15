@@ -136,6 +136,7 @@ final class MaterialsPlugin {
      * Add plugin hooks and filters.
      */
     protected function hooks() {
+        add_action( 'init', \Closure::fromCallable( [ $this, 'load_localization' ] ), 0 );
         add_action( 'init', \Closure::fromCallable( [ $this, 'init_classes' ] ), 0 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
@@ -154,6 +155,13 @@ final class MaterialsPlugin {
             'tms/acf/layout/accordion_file/data',
             \Closure::fromCallable( [ $this, 'format_accordion_file_data' ] )
         );
+    }
+
+    /**
+     * Load plugin localization
+     */
+    public function load_localization() {
+        load_plugin_textdomain( 'tms-plugin-materials', false, dirname( plugin_basename( __DIR__ ) ) . '/languages/' );
     }
 
     /**
