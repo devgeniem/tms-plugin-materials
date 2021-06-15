@@ -136,7 +136,7 @@ final class MaterialsPlugin {
      * Add plugin hooks and filters.
      */
     protected function hooks() {
-        add_action( 'init', \Closure::fromCallable( [ $this, 'Load plugin localisation' ] ), 0 );
+        add_action( 'init', \Closure::fromCallable( [ $this, 'load_localization' ] ), 0 );
         add_action( 'init', \Closure::fromCallable( [ $this, 'init_classes' ] ), 0 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
