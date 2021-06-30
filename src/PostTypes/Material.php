@@ -76,6 +76,12 @@ class Material {
      * @return void
      */
     public function hooks() : void {
+        add_filter(
+            'use_block_editor_for_post_type',
+            \Closure::fromCallable( [ $this, 'disable_gutenberg' ] ),
+            10,
+            2
+        );
     }
 
     /**
@@ -130,7 +136,7 @@ class Material {
             'can_export'          => true,
             'has_archive'         => false,
             'exclude_from_search' => false,
-            'publicly_queryable'  => true,
+            'publicly_queryable'  => false,
             'capability_type'     => 'material',
             'query_var'           => true,
             'map_meta_cap'        => true,
@@ -275,5 +281,17 @@ class Material {
         }
 
         return $fields;
+    }
+
+    /**
+     * Disable Gutenberg for this post type
+     *
+     * @param boolean $current_status The current Gutenberg status.
+     * @param string  $post_type      The post type.
+     *
+     * @return boolean
+     */
+    protected function disable_gutenberg( bool $current_status, string $post_type ) : bool {
+        return $post_type === static::SLUG ? false : $current_status; // phpcs:ignore
     }
 }
