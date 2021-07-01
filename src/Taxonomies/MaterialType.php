@@ -60,8 +60,19 @@ class MaterialType {
             $labels
         );
 
+        $capabilities = \apply_filters(
+            $filter_prefix . '/capabilities',
+            [
+                'manage_terms' => 'manage_material_types',
+                'edit_terms'   => 'edit_material_types',
+                'delete_terms' => 'delete_material_types',
+                'assign_terms' => 'assign_material_types',
+            ]
+        );
+
         $args = [
             'labels'            => $labels,
+            'capabilities'      => $capabilities,
             'hierarchical'      => true,
             'public'            => true,
             'show_ui'           => true,
