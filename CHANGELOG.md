@@ -6,9 +6,15 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.3.0]
+
 ### Added
 
 - Added capabilities #13
+
+### Changed
+
+- Hide CPT single and archive view #15
 
 ## [1.2.0] - 2021-06-15
 
