@@ -155,6 +155,12 @@ final class MaterialsPlugin {
             'tms/acf/layout/accordion_file/data',
             \Closure::fromCallable( [ $this, 'format_accordion_file_data' ] )
         );
+
+        add_filter(
+            'upload_mimes',
+            \Closure::fromCallable( [ $this, 'modify_upload_mimes' ] ),
+        );
+
     }
 
     /**
@@ -374,5 +380,19 @@ final class MaterialsPlugin {
                 ];
             }, $material_ids )
         );
+    }
+
+    /**
+     * Allow zip upload
+     *
+     * @param array $mimes Array of mime types.
+     *
+     * @return array
+     */
+    protected function modify_upload_mimes( array $mimes = [] ) : array {
+        $mimes['zip'] = 'application/zip';
+        $mimes['gz']  = 'application/x-gzip';
+
+        return $mimes;
     }
 }
