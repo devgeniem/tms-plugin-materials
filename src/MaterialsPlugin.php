@@ -342,7 +342,9 @@ final class MaterialsPlugin {
      * @return array
      */
     protected function format_accordion_file_data( array $data ) : array {
-        return static::format_file_items( $data );
+        $data['items'] = static::format_file_items( $data['materials'] );
+
+        return $data;
     }
 
     /**
