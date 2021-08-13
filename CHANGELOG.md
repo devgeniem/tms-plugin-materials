@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+### Added
+
+- Allow zip uploads #25
+
 ## [1.3.1]
 
 ## Fixed
