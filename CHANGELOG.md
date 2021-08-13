@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.3.1]
+
+## Fixed
+- Fix issue where layout accordion failed to display materials #24
+
 ## [1.3.0]
 
 ### Added
