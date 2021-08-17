@@ -29,7 +29,7 @@
                         <div class="column is-6 is-offset-2-fullhd is-4-fullhd">
                             <form class="p-2" action="{search.action|s}" method="get" role="search">
                                 {>"ui/input-text" label=strings.search.label name=search.input_search_name value=search.current_search placeholder=strings.search.input_placeholder /}
-                                {>"ui/button-search-submit" text=strings.search.submit_value /}
+                                {>"ui/button-search-submit" text=strings.search.submit_value class=layout_classes.submit_classes /}
                             </form>
                         </div>
                     </div>
