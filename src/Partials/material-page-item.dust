@@ -1,5 +1,5 @@
 <li class="column is-12 is-6-desktop">
-    <div class="is-flex p-4 p-6-desktop has-border-secondary has-border-1 has-border-radius-small">
+    <div class="is-flex p-4 p-6-desktop {layout_classes.page_item|s}">
         <div class="image is-180x180 is-hidden-touch is-flex is-align-items-center is-justify-content-center is-flex-shrink-0 mr-4 mr-6-desktop">
             {?image}
                 {@image id=image size="medium" class="objectfit-image" alt="" /}
@@ -12,7 +12,7 @@
             <div class="is-flex is-flex-wrap-wrap">
                 <div class="has-width-100-until-tablet">
                     <a href="{url}"
-                       class="is-inline-flex is-align-items-center has-text-large has-text-black has-text-weight-semibold is-family-secondary has-word-break-break-all"
+                       class="is-inline-flex is-align-items-center has-text-large has-text-weight-semibold is-family-secondary has-word-break-break-all {layout_classes.page_item_text|s}"
                        download>
                         {title|s}
                         {>"ui/icon" icon="chevron-right" class="ml-2 icon--medium" /}
@@ -32,7 +32,7 @@
             {/description}
 
             <a href="{url}"
-               class="button is-primary is-outlined is-small is-hidden-touch is-align-self-flex-start ml-auto-tablet mt-4"
+               class="button is-small is-hidden-touch is-align-self-flex-start ml-auto-tablet mt-4 {layout_classes.page_item_button|s}"
                download>
                 {button_text|s}
             </a>

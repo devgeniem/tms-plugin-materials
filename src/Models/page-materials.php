@@ -227,6 +227,37 @@ class PageMaterials extends BaseModel {
     }
 
     /**
+     * Return page template classes.
+     *
+     * @return array
+     */
+    public function layout_classes() {
+        $submit_classes = apply_filters( 'tms/plugin-materials/page_materials/submit_button_classes', '' );
+
+        $button_classes = apply_filters(
+            'tms/plugin-materials/page_materials/material_page_item_button_classes',
+            'is-primary is-outlined'
+        );
+
+        $page_item_text_classes = apply_filters(
+            'tms/plugin-materials/page_materials/material_page_item_text_classes',
+            'has-text-black'
+        );
+
+        $page_item_classes = apply_filters(
+            'tms/plugin-materials/page_materials/material_page_item_classes',
+            'has-border-secondary has-border-1 has-border-radius-small'
+        );
+
+        return [
+            'submit_classes'   => $submit_classes,
+            'page_item'        => $page_item_classes,
+            'page_item_text'   => $page_item_text_classes,
+            'page_item_button' => $button_classes,
+        ];
+    }
+
+    /**
      * Get relevant taxonomy terms for WP Query.
      *
      * @return array|bool[]|string[]

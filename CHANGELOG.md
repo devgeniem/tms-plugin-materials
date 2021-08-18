@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning][semver].
 ## [Unreleased]
 
 ### Added
-
+- TMS-192: Add filter for template classes #26
 - Allow zip uploads #25
 
 ## [1.3.1]
