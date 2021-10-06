@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keep-changelog]
@@ -6,12 +7,16 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.5.0] - 2021-10-06
+
 ### Changed
+
 - TMS-272: CPT set to non-public #34
 
 ## [1.4.0]
 
 ### Added
+
 - TMS-199: Add filter to material block title color #28
 - TMS-192: Add filter for template classes #26
 - Allow zip uploads #25
@@ -19,6 +24,7 @@ and this project adheres to [Semantic Versioning][semver].
 ## [1.3.1]
 
 ## Fixed
+
 - Fix issue where layout accordion failed to display materials #24
 
 ## [1.3.0]
@@ -51,6 +57,6 @@ and this project adheres to [Semantic Versioning][semver].
 - TMS-31: Add materials block #5
 - TMS-60: Register post type material and taxonomy material type #4
 
-
 [keep-changelog]: http://keepachangelog.com/en/1.0.0/
+
 [semver]: http://semver.org/spec/v2.0.0.html
