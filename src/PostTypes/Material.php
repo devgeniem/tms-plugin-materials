@@ -126,7 +126,7 @@ class Material {
             'labels'              => $labels,
             'supports'            => [ 'title', 'revisions' ],
             'hierarchical'        => false,
-            'public'              => true,
+            'public'              => false,
             'show_ui'             => true,
             'show_in_menu'        => true,
             'menu_position'       => $this->menu_order,

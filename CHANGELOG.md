@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+### Changed
+- TMS-272: CPT set to non-public
+
+## [1.4.0]
+
 ### Added
+- TMS-199: Add filter to material block title color #28
 - TMS-192: Add filter for template classes #26
 - Allow zip uploads #25
 
