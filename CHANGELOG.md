@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning][semver].
 ## [Unreleased]
 
 ### Changed
-- TMS-272: CPT set to non-public
+- TMS-272: CPT set to non-public #34
 
 ## [1.4.0]
 
