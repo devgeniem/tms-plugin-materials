@@ -197,10 +197,7 @@ class MaterialBlock {
         }
 
         $data['is_full_view']  = $data['layout'] === 'rich';
-        $data['title_classes'] = apply_filters(
-            'tms/plugin-materials/block_materials/title_classes',
-            'has-text-secondary-invert'
-        );
+        $data['title_classes'] = 'has-text-paragraph';
 
         return apply_filters( 'tms/acf/block/' . self::KEY . '/data', $data );
     }
