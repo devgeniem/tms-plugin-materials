@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.6.0] - 2021-10-20
+
 ### Changed
 
 - TMS-317: Default title class to text color #39
