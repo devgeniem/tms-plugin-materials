@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.6.1] - 2021-10-25
+
+- Update translations
+
 ## [1.6.0] - 2021-10-20
 
 ### Changed
