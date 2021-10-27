@@ -136,13 +136,16 @@ class PageMaterials extends BaseModel {
             'fields'         => 'ids',
         ];
 
-        if ( ! empty( get_field( 'materials' ) ) ) {
-            $args['post__in'] = get_field( 'materials' );
+        $selected_materials = get_field( 'materials' );
+
+        if ( ! empty( $selected_materials ) ) {
+            $args['post__in'] = $selected_materials;
         }
 
         $query_terms = $this->get_query_terms();
 
-        if ( ! empty( $query_terms ) ) {
+        // Selected materials bypass taxonomy selection
+        if ( ! empty( $query_terms ) && empty( $selected_materials ) ) {
             $args['tax_query'] = [
                 [
                     'taxonomy' => MaterialType::SLUG,
