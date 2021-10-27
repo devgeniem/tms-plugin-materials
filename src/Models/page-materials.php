@@ -35,7 +35,8 @@ class PageMaterials extends BaseModel {
                 'input_placeholder' => __( 'Search query', 'tms-plugin-materials' ),
             ],
             'terms'      => [
-                'show_all' => __( 'Show All', 'tms-plugin-materials' ),
+                'show_all'   => __( 'Show All', 'tms-plugin-materials' ),
+                'aria_label' => __( 'Filter materials by taxonomy', 'tms-plugin-materials' ),
             ],
             'no_results' => __( 'No results', 'tms-plugin-materials' ),
         ];
@@ -97,7 +98,7 @@ class PageMaterials extends BaseModel {
         }, $tax_terms );
 
         array_unshift( $terms, [
-            'name'      => 'show_all',
+            'name'      => __( 'Show All', 'tms-plugin-materials' ),
             'permalink' => get_the_permalink(),
             'is_active' => empty( $current_term ) && empty( $this->search_data->query ),
         ] );
