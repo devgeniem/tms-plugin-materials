@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+### Changed
+
+- TMS-318: Selected materials bypass taxonomy selection
+
+## [1.6.1] - 2021-10-25
+
+- Update translations
+
+## [1.6.0] - 2021-10-20
+
+### Changed
+
+- TMS-317: Default title class to text color #39
+
 ## [1.5.0] - 2021-10-06
 
 ### Changed
