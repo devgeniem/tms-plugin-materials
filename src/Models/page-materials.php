@@ -35,7 +35,8 @@ class PageMaterials extends BaseModel {
                 'input_placeholder' => __( 'Search query', 'tms-plugin-materials' ),
             ],
             'terms'      => [
-                'show_all' => __( 'Show All', 'tms-plugin-materials' ),
+                'show_all'   => __( 'Show All', 'tms-plugin-materials' ),
+                'aria_label' => __( 'Filter materials by taxonomy', 'tms-plugin-materials' ),
             ],
             'no_results' => __( 'No results', 'tms-plugin-materials' ),
         ];
@@ -97,7 +98,7 @@ class PageMaterials extends BaseModel {
         }, $tax_terms );
 
         array_unshift( $terms, [
-            'name'      => 'show_all',
+            'name'      => __( 'Show All', 'tms-plugin-materials' ),
             'permalink' => get_the_permalink(),
             'is_active' => empty( $current_term ) && empty( $this->search_data->query ),
         ] );
@@ -136,13 +137,16 @@ class PageMaterials extends BaseModel {
             'fields'         => 'ids',
         ];
 
-        if ( ! empty( get_field( 'materials' ) ) ) {
-            $args['post__in'] = get_field( 'materials' );
+        $selected_materials = get_field( 'materials' );
+
+        if ( ! empty( $selected_materials ) ) {
+            $args['post__in'] = $selected_materials;
         }
 
         $query_terms = $this->get_query_terms();
 
-        if ( ! empty( $query_terms ) ) {
+        // Selected materials bypass taxonomy selection
+        if ( ! empty( $query_terms ) && empty( $selected_materials ) ) {
             $args['tax_query'] = [
                 [
                     'taxonomy' => MaterialType::SLUG,
