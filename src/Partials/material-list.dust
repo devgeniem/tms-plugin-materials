@@ -20,7 +20,7 @@
                     <div class="is-flex is-flex-wrap-wrap">
                         <div class="has-width-100-until-tablet">
                             <a href="{url}"
-                               class="is-inline-flex is-align-items-center has-text-large has-text-black has-text-weight-semibold is-family-secondary"
+                               class="is-inline-flex is-align-items-center has-text-large has-text-weight-semibold is-family-secondary {title_classes|s}"
                                download>
                                 {title|s}
                                 {>"ui/icon" icon="chevron-right" class="ml-2 icon--medium" /}

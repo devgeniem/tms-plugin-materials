@@ -1,0 +1,111 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: TMS Materials\n"
+"POT-Creation-Date: 2021-10-22 08:28+0300\n"
+"PO-Revision-Date: 2021-11-05 17:15+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+
+#: src/Fields/PageMaterialsFieldGroup.php:37
+#: src/Fields/PageMaterialsFieldGroup.php:114
+msgctxt "plugin ACF"
+msgid "Materials"
+msgstr "Материалы"
+
+#: src/Fields/PageMaterialsFieldGroup.php:90
+msgctxt "plugin ACF"
+msgid "Description text"
+msgstr "Текст описания"
+
+#: src/Fields/PageMaterialsFieldGroup.php:141
+msgctxt "plugin ACF"
+msgid "Material types"
+msgstr "Типы материалов"
+
+#: src/MaterialsPlugin.php:312
+msgid "M"
+msgstr "М"
+
+#: src/MaterialsPlugin.php:382
+msgid "Open"
+msgstr "Открыть"
+
+#: src/Models/page-materials.php:33
+msgid "Search for materials"
+msgstr "Поиск материалов"
+
+#: src/Models/page-materials.php:34
+msgid "Search"
+msgstr "Поиск"
+
+#: src/Models/page-materials.php:35
+msgid "Search query"
+msgstr "Поисковый запрос"
+
+#: src/Models/page-materials.php:38
+msgid "Show All"
+msgstr "Показать все"
+
+#: src/Models/page-materials.php:40
+msgid "No results"
+msgstr "Нет результатов"
+
+#: src/PostTypes/Material.php:60
+msgctxt "theme CPT slugs"
+msgid "materials"
+msgstr "материалы"
+
+#: src/PostTypes/Material.php:63
+msgctxt "theme CPT"
+msgid "CPT Description"
+msgstr "Описание CPT"
+
+#: src/Taxonomies/MaterialType.php:45
+msgid "Separate departments with commas"
+msgstr "Отделяйте разделы запятыми"
+
+#: src/Taxonomies/MaterialType.php:46
+msgid "Add or remove departments"
+msgstr "Добавить или удалить разделы"
+
+#: src/Taxonomies/MaterialType.php:47
+msgid "Choose from most used departments"
+msgstr "Выберите из наиболее часто используемых разделов"
+
+#: src/Taxonomies/MaterialType.php:48
+msgid "Popular departments"
+msgstr "Популярные разделы"
+
+#. Plugin Name of the plugin/theme
+#. Description of the plugin/theme
+msgid "TMS Materials"
+msgstr "Материалы TMS"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/devgeniem/tms-plugin-materials"
+msgstr "https://github.com/devgeniem/tms-plugin-materials"
+
+#. Author of the plugin/theme
+msgid "Geniem Oy"
+msgstr "Geniem Oy"
+
+#. Author URI of the plugin/theme
+msgid "https://geniem.com"
+msgstr "https://geniem.com"
