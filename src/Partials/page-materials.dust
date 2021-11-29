@@ -34,24 +34,24 @@
                         </div>
                     </div>
 
-                    <div id="material-results" class="columns">
-                        {?PageMaterials.search.summary}
-                            <p class="is-sr-only">{PageMaterials.search.summary|s}</p>
-                        {/PageMaterials.search.summary}
+                    <div class="columns">
+                        {?PageMaterials.results.summary}
+                            <p class="is-sr-only">{PageMaterials.results.summary|s}</p>
+                        {/PageMaterials.results.summary}
 
                         <div class="column is-10-fullhd is-offset-1-fullhd">
-                            {?items}
+                            {?results.items}
                                 <ul class="columns is-unstyled is-multiline">
-                                    {#items}
+                                    {#results.items}
                                         {>"material-page-item" /}
-                                    {/items}
+                                    {/results.items}
                                 </ul>
 
                             {:else}
                                 <div class="has-text-centered h5 mt-7 mb-7 mt-12-desktop mb-12-desktop">
                                     {strings.no_results|s}
                                 </div>
-                            {/items}
+                            {/results.items}
                         </div>
                     </div>
 
