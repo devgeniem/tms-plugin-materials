@@ -84,16 +84,19 @@ class PageMaterials extends BaseModel {
         $current_term = $this->get_queried_material_type_term();
 
         $terms = array_map( function ( $term_id ) use ( $current_term ) {
-            $term = get_term( $term_id, MaterialType::SLUG );
+            $term      = get_term( $term_id, MaterialType::SLUG );
+            $is_active = $term->term_id === (int) $current_term;
 
             return [
-                'name'      => $term->name,
-                'permalink' => add_query_arg(
+                'name'            => $term->name,
+                'permalink'       => add_query_arg(
                     MaterialType::SLUG,
                     $term->term_id,
                     get_the_permalink()
                 ),
-                'is_active' => $term->term_id === (int) $current_term,
+                'is_active'       => $is_active,
+                'link_classes'    => $is_active ? 'is-active' : '',
+                'link_attributes' => 'aria-current="page"',
             ];
         }, $tax_terms );
 
