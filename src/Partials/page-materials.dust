@@ -34,7 +34,7 @@
                         </div>
                     </div>
 
-                    <div id="material-results" class="columns">
+                    <div class="columns">
                         <div class="column is-10-fullhd is-offset-1-fullhd">
                             {?items}
                                 <ul class="columns is-unstyled is-multiline">
