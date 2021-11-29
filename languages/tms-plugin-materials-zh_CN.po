@@ -1,16 +1,16 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: TMS Materials\n"
-"POT-Creation-Date: 2021-10-22 08:28+0300\n"
-"PO-Revision-Date: 2021-11-09 11:19+0200\n"
+"POT-Creation-Date: 2021-11-29 16:48+0200\n"
+"PO-Revision-Date: 2021-11-29 16:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: plugin.php\n"
@@ -25,23 +25,32 @@ msgstr ""
 
 #: src/Fields/PageMaterialsFieldGroup.php:37
 #: src/Fields/PageMaterialsFieldGroup.php:114
+#, fuzzy
+#| msgctxt "plugin ACF"
+#| msgid "Materials"
 msgctxt "plugin ACF"
-msgid "Materials"
+msgid "Materiaalit"
 msgstr "材料"
 
 #: src/Fields/PageMaterialsFieldGroup.php:90
 msgctxt "plugin ACF"
-msgid "Description text"
-msgstr "描述文本"
+msgid "Kuvausteksti"
+msgstr ""
 
 #: src/Fields/PageMaterialsFieldGroup.php:141
+#, fuzzy
+#| msgctxt "plugin ACF"
+#| msgid "Material types"
 msgctxt "plugin ACF"
-msgid "Material types"
+msgid "Materiaalityypit"
 msgstr "材料类型"
 
 #: src/MaterialsPlugin.php:312
-msgid "M"
-msgstr "M"
+#, fuzzy
+#| msgctxt "plugin ACF"
+#| msgid "Materials"
+msgid "Materiaalikirjasto"
+msgstr "材料"
 
 #: src/MaterialsPlugin.php:382
 msgid "Open"
@@ -59,13 +68,28 @@ msgstr "搜索"
 msgid "Search query"
 msgstr "搜索查询"
 
-#: src/Models/page-materials.php:38
+#: src/Models/page-materials.php:38 src/Models/page-materials.php:88
 msgid "Show All"
 msgstr "显示全部"
 
-#: src/Models/page-materials.php:40
+#: src/Models/page-materials.php:39
+msgid "Filter materials by taxonomy"
+msgstr ""
+
+#: src/Models/page-materials.php:41
 msgid "No results"
 msgstr "无结果"
+
+#: src/Models/page-materials.php:127
+#, php-format
+msgctxt "search results summary"
+msgid "%1$1s result found for \"%2$2s\""
+msgid_plural "%1$1s results found for \"%2$2s\""
+msgstr[0] "找到了 %1$1s 个有关“%2$2s”的结果"
+
+#: src/Models/page-materials.php:138
+msgid "No search results"
+msgstr "无搜索结果"
 
 #: src/PostTypes/Material.php:60
 msgctxt "theme CPT slugs"
@@ -109,3 +133,10 @@ msgstr "Geniem Oy"
 #. Author URI of the plugin/theme
 msgid "https://geniem.com"
 msgstr "https://geniem.com"
+
+#~ msgctxt "plugin ACF"
+#~ msgid "Description text"
+#~ msgstr "描述文本"
+
+#~ msgid "M"
+#~ msgstr "M"

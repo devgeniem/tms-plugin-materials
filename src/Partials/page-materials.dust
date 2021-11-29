@@ -34,7 +34,11 @@
                         </div>
                     </div>
 
-                    <div class="columns">
+                    <div id="material-results" class="columns">
+                        {?PageMaterials.search.summary}
+                            <p class="is-sr-only">{PageMaterials.search.summary|s}</p>
+                        {/PageMaterials.search.summary}
+
                         <div class="column is-10-fullhd is-offset-1-fullhd">
                             {?items}
                                 <ul class="columns is-unstyled is-multiline">
