@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning][semver].
 - TMS-318: Indicate current filter for screen readers #43
 - TMS-350: Add translations #43
 - TMS-477: Change active filter element from span to a
+- TMS-477: Add search search results summary text for screen readers
 
 ## [1.6.1] - 2021-10-25
 
