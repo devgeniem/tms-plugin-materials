@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.7.0] - 2021-11-30
+
 ### Changed
 
 - TMS-318: Selected materials bypass taxonomy selection #43
