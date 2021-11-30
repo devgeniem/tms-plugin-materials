@@ -60,10 +60,32 @@ class PageMaterials extends BaseModel {
         $this->search_data        = new stdClass();
         $this->search_data->query = get_query_var( self::SEARCH_QUERY_VAR );
 
+        $search_clause = $this->search_data->query;
+        $result_count  = '3';
+
+        if ( $result_count > 0 ) {
+            $results_text = sprintf(
+            // translators: 1. placeholder is number of search results, 2. placeholder contains the search term(s).
+                _nx(
+                    '%1$1s result found for "%2$2s"',
+                    '%1$1s results found for "%2$2s"',
+                    $result_count,
+                    'search results summary',
+                    'tms-plugin-materials'
+                ),
+                $result_count,
+                $search_clause
+            );
+        }
+        else {
+            $results_text = __( 'No search results', 'tms-plugin-materials' );
+        }
+
         return [
             'input_search_name' => self::SEARCH_QUERY_VAR,
             'current_search'    => $this->search_data->query,
             'action'            => get_the_permalink(),
+            'summary'           => $results_text,
         ];
     }
 
@@ -84,16 +106,19 @@ class PageMaterials extends BaseModel {
         $current_term = $this->get_queried_material_type_term();
 
         $terms = array_map( function ( $term_id ) use ( $current_term ) {
-            $term = get_term( $term_id, MaterialType::SLUG );
+            $term      = get_term( $term_id, MaterialType::SLUG );
+            $is_active = $term->term_id === (int) $current_term;
 
             return [
-                'name'      => $term->name,
-                'permalink' => add_query_arg(
+                'name'            => $term->name,
+                'permalink'       => add_query_arg(
                     MaterialType::SLUG,
                     $term->term_id,
                     get_the_permalink()
                 ),
-                'is_active' => $term->term_id === (int) $current_term,
+                'is_active'       => $is_active,
+                'link_classes'    => $is_active ? 'is-active' : '',
+                'link_attributes' => 'aria-current="page"',
             ];
         }, $tax_terms );
 
@@ -111,14 +136,38 @@ class PageMaterials extends BaseModel {
      *
      * @return array
      */
-    public function items() : array {
+    public function results() : array {
         $items = $this->query_items();
+
+        $search_clause = $this->search_data->query;
+        $result_count  = $this->pagination->items;
+
+        if ( $result_count > 0 ) {
+            $results_text = sprintf(
+            // translators: 1. placeholder is number of search results, 2. placeholder contains the search term(s).
+                _nx(
+                    '%1$1s result found for "%2$2s"',
+                    '%1$1s results found for "%2$2s"',
+                    $result_count,
+                    'search results summary',
+                    'tms-plugin-materials'
+                ),
+                $result_count,
+                $search_clause
+            );
+        }
+        else {
+            $results_text = __( 'No search results', 'tms-plugin-materials' );
+        }
 
         if ( empty( $items ) ) {
             return [];
         }
 
-        return MaterialsPlugin::format_file_items( $items );
+        return [
+            'items'   => MaterialsPlugin::format_file_items( $items ),
+            'summary' => $results_text,
+        ];
     }
 
     /**

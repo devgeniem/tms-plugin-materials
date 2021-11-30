@@ -2,16 +2,13 @@
     <ul class="is-unstyled is-flex is-flex-wrap-wrap" aria-label="{strings.terms.aria_label|s}">
         {#terms}
             <li class="p-2">
-                {?is_active}
-                    <span class="pill is-active" aria-current="page" >
-                        {>"ui/icon" icon="checkmark" class="icon--medium is-primary-invert mr-2" /}
-                        {name|s}
-                    </span>
-                {:else}
-                    <a href="{permalink|u}#main-content" class="pill" >
-                        {name|s}
-                    </a>
-                {/is_active}
+                <a href="{permalink|u}#main-content" class="pill {link_classes|s}" {link_attributes|s}>
+                    {?is_active}
+                        {>"ui/icon" icon="checkmark" class="icon--medium mr-2" /}
+                    {/is_active}
+
+                    {name|s}
+                </a>
             </li>
         {/terms}
     </ul>
