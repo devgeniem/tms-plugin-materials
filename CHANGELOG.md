@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+### Changed
+
+- TMS-421: Allow additional customization from child theme
+
 ## [1.7.0] - 2021-11-30
 
 ### Changed

@@ -27,14 +27,15 @@
                                     {>"ui/icon" icon="chevron-right" class="ml-2 icon--medium" /}
                                 </a>
 
-                                <div class="mt-1 has-text-gray has-line-height-tight is-family-secondary has-text-weight-medium has-text-small has-divider-x-1 has-divider-x-1">
+                                <div
+                                    class="mt-1 has-text-gray has-line-height-tight is-family-secondary has-text-weight-medium has-text-small has-divider-x-1 has-divider-x-1">
                                     <span class="is-inline-block pr-3 is-uppercase">{filetype}</span>
                                     <span class="is-inline-block ml-2">{filesize|s}</span>
                                 </div>
                             </div>
 
                             <a href="{url}"
-                               class="button is-primary is-outlined is-small is-hidden-touch is-align-self-flex-start ml-auto-tablet"
+                               class="button is-small is-hidden-touch is-align-self-flex-start ml-auto-tablet {button_classes|s}"
                                download>
                                 {button_text|s}
                             </a>
@@ -49,7 +50,7 @@
                         {/is_full_view}
 
                         <a href="{url}"
-                           class="button is-primary is-outlined is-small is-hidden-desktop mt-4"
+                           class="button is-small is-hidden-desktop mt-4 {button_classes|s}"
                            download>
                             {button_text|s}
                         </a>
