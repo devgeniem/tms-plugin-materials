@@ -196,8 +196,9 @@ class MaterialBlock {
             $data['items'] = MaterialsPlugin::format_file_items( $data['materials'] );
         }
 
-        $data['is_full_view']  = $data['layout'] === 'rich';
-        $data['title_classes'] = 'has-text-paragraph';
+        $data['is_full_view']   = $data['layout'] === 'rich';
+        $data['title_classes']  = 'has-text-paragraph';
+        $data['button_classes'] = 'is-primary is-outlined';
 
         return apply_filters( 'tms/acf/block/' . self::KEY . '/data', $data );
     }

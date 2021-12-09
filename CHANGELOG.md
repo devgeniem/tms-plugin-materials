@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning][semver].
 
 ### Changed
 
+- TMS-421: Allow additional customization from child theme
+
+## [1.7.0] - 2021-11-30
+
+### Changed
+
 - TMS-318: Selected materials bypass taxonomy selection #43
 - TMS-318: Indicate current filter for screen readers #43
 - TMS-350: Add translations #43

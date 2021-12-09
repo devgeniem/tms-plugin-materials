@@ -34,7 +34,7 @@
                         </div>
                     </div>
 
-                    <div class="columns">
+                    <div class="page-materials__results columns">
                         {?PageMaterials.results.summary}
                             <p class="is-sr-only">{PageMaterials.results.summary|s}</p>
                         {/PageMaterials.results.summary}
