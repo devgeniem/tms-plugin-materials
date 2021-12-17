@@ -186,6 +186,10 @@ class PageMaterials extends BaseModel {
             'fields'         => 'ids',
         ];
 
+        if ( function_exists( 'pll_get_post_language' ) ) {
+            $args['lang'] = pll_get_post_language( get_the_ID() );
+        }
+
         $selected_materials = get_field( 'materials' );
 
         if ( ! empty( $selected_materials ) ) {
