@@ -182,7 +182,7 @@ class PageMaterials extends BaseModel {
         $args = [
             'post_type'      => Material::SLUG,
             'posts_per_page' => $per_page,
-            'paged'          => $paged,
+            'offset'         => ( $paged - 1 ) * $per_page,
             'fields'         => 'ids',
         ];
 
