@@ -182,7 +182,7 @@ class PageMaterials extends BaseModel {
         $args = [
             'post_type'      => Material::SLUG,
             'posts_per_page' => $per_page,
-            'paged'          => $paged,
+            'offset'         => ( $paged - 1 ) * $per_page,
             'fields'         => 'ids',
         ];
 
@@ -272,11 +272,7 @@ class PageMaterials extends BaseModel {
      * @return mixed|void
      */
     public function pagination() {
-        if ( isset( $this->pagination->page ) && isset( $this->pagination->max_page ) ) {
-            if ( $this->pagination->page <= $this->pagination->max_page ) {
-                return $this->pagination;
-            }
-        }
+        return $this->pagination;
     }
 
     /**
