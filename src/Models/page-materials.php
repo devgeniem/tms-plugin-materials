@@ -176,9 +176,7 @@ class PageMaterials extends BaseModel {
      * @return int[]|WP_Post[]
      */
     protected function query_items() {
-        wp_reset_postdata();
-
-        $per_page = 2;
+        $per_page = 12;
         $paged    = ! empty( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
         $args = [
@@ -187,6 +185,10 @@ class PageMaterials extends BaseModel {
             'offset'         => ( $paged - 1 ) * $per_page,
             'fields'         => 'ids',
         ];
+
+        if ( function_exists( 'pll_get_post_language' ) ) {
+            $args['lang'] = pll_get_post_language( get_the_ID() );
+        }
 
         $selected_materials = get_field( 'materials' );
 
@@ -274,7 +276,11 @@ class PageMaterials extends BaseModel {
      * @return mixed|void
      */
     public function pagination() {
-        return $this->pagination;
+        if ( isset( $this->pagination->page ) && isset( $this->pagination->max_page ) ) {
+            if ( $this->pagination->page <= $this->pagination->max_page ) {
+                return $this->pagination;
+            }
+        }
     }
 
     /**
