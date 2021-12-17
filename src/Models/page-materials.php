@@ -272,11 +272,7 @@ class PageMaterials extends BaseModel {
      * @return mixed|void
      */
     public function pagination() {
-        if ( isset( $this->pagination->page ) && isset( $this->pagination->max_page ) ) {
-            if ( $this->pagination->page <= $this->pagination->max_page ) {
-                return $this->pagination;
-            }
-        }
+        return $this->pagination;
     }
 
     /**
