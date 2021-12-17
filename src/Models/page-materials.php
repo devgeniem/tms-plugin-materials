@@ -176,9 +176,7 @@ class PageMaterials extends BaseModel {
      * @return int[]|WP_Post[]
      */
     protected function query_items() {
-        wp_reset_postdata();
-
-        $per_page = 2;
+        $per_page = 12;
         $paged    = ! empty( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
         $args = [
