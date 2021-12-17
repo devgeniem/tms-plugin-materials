@@ -211,7 +211,7 @@ class PageMaterials extends BaseModel {
 
         $this->setup_pagination( $per_page, $paged, $wp_query->found_posts );
 
-        return $wp_query->get_posts();
+        return $wp_query->posts;
     }
 
     /**
