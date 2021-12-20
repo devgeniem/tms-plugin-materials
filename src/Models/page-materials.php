@@ -183,7 +183,6 @@ class PageMaterials extends BaseModel {
             'post_type'      => Material::SLUG,
             'posts_per_page' => $per_page,
             'offset'         => ( $paged - 1 ) * $per_page,
-            'fields'         => 'ids',
         ];
 
         $selected_materials = get_field( 'materials' );
@@ -212,7 +211,7 @@ class PageMaterials extends BaseModel {
 
         $this->setup_pagination( $per_page, $paged, $wp_query->found_posts );
 
-        return $wp_query->get_posts();
+        return $wp_query->posts;
     }
 
     /**
