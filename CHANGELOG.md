@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.7.1]
+
 ### Changed
 
-- TMS-421: Allow additional customization from child theme
+- TMS-421: Allow additional customization from child theme #53
 - TMS-574: Fix materials page pagination. #54
 
 ## [1.7.0] - 2021-11-30
