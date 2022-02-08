@@ -118,14 +118,18 @@ class PageMaterials extends BaseModel {
                 ),
                 'is_active'       => $is_active,
                 'link_classes'    => $is_active ? 'is-active' : '',
-                'link_attributes' => 'aria-current="page"',
+                'link_attributes' => $is_active ? 'aria-current="page"' : '',
             ];
         }, $tax_terms );
 
+        $no_active_filter = empty( $current_term ) && empty( $this->search_data->query );
+
         array_unshift( $terms, [
-            'name'      => __( 'Show All', 'tms-plugin-materials' ),
-            'permalink' => get_the_permalink(),
-            'is_active' => empty( $current_term ) && empty( $this->search_data->query ),
+            'name'            => __( 'Show All', 'tms-plugin-materials' ),
+            'permalink'       => get_the_permalink(),
+            'is_active'       => $no_active_filter,
+            'link_classes'    => $no_active_filter ? 'is-active' : '',
+            'link_attributes' => $no_active_filter ? 'aria-current="page"' : '',
         ] );
 
         return $terms;
