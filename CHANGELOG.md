@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.7.2] - 2022-02-24
+
 ### Changed
 
 - TMS-599: Fix active state for 'All' filter #61
