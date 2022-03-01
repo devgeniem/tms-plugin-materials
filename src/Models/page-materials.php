@@ -6,11 +6,14 @@
 use TMS\Plugin\Materials\MaterialsPlugin;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
+use TMS\Theme\Base\Traits\Components;
 
 /**
  * The model class for Materials
  */
 class PageMaterials extends BaseModel {
+
+    use Components;
 
     /**
      * Template

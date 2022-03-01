@@ -61,6 +61,8 @@
                 {/password}
             </div>
         </section>
+
+        {>"ui/components" components=PageMaterials.components /}
     </main>
 {/PageMaterials}
 
