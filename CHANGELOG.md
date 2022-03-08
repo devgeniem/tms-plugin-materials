@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning][semver].
 ### Added
 - TMS-731: Add components to materials-page.
 
+## [1.7.2] - 2022-02-24
+
 ### Changed
 
 - TMS-599: Fix active state for 'All' filter #61
