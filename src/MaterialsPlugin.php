@@ -157,6 +157,10 @@ final class MaterialsPlugin {
             \Closure::fromCallable( [ $this, 'modify_upload_mimes' ] ),
         );
 
+        add_filter(
+            'tms/theme/gutenberg/excluded_templates',
+            \Closure::fromCallable( [ $this, 'exclude_gutenberg' ] ),
+        );
     }
 
     /**
@@ -393,5 +397,18 @@ final class MaterialsPlugin {
         $mimes['gz']  = 'application/x-gzip';
 
         return $mimes;
+    }
+
+    /**
+     * Exclude Gutenberg editor
+     *
+     * @param array $templates Array of templates
+     *
+     * @return array
+     */
+    protected function exclude_gutenberg( array $templates ) : array {
+        $templates[] = \PageMaterials::TEMPLATE;
+
+        return $templates;
     }
 }
