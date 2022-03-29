@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2021 Geniem Oy.
- */
 
 namespace TMS\Plugin\Materials;
 
@@ -10,7 +7,6 @@ use TMS\Plugin\Materials\Layouts\AccordionFileLayout;
 use TMS\Plugin\Materials\PostTypes\Material;
 use TMS\Plugin\Materials\Taxonomies\MaterialType;
 use TMS\Plugin\Materials\Fields\PageMaterialsFieldGroup;
-use TMS\Theme\Base\Settings;
 
 /**
  * Class MaterialsPlugin
@@ -161,6 +157,10 @@ final class MaterialsPlugin {
             \Closure::fromCallable( [ $this, 'modify_upload_mimes' ] ),
         );
 
+        add_filter(
+            'tms/theme/gutenberg/excluded_templates',
+            \Closure::fromCallable( [ $this, 'exclude_gutenberg' ] ),
+        );
     }
 
     /**
@@ -378,7 +378,7 @@ final class MaterialsPlugin {
                     'description' => wp_kses_post( get_field( 'description', $id ) ),
                     'image'       => ! empty( get_field( 'image', $id ) )
                         ? get_field( 'image', $id )
-                        : Settings::get_setting( 'material_default_image' ),
+                        : apply_filters( 'tms/theme/settings/material_default_image', '' ),
                     'button_text' => __( 'Open', 'tms-plugin-materials' ),
                 ];
             }, $material_ids )
@@ -397,5 +397,18 @@ final class MaterialsPlugin {
         $mimes['gz']  = 'application/x-gzip';
 
         return $mimes;
+    }
+
+    /**
+     * Exclude Gutenberg editor
+     *
+     * @param array $templates Array of templates.
+     *
+     * @return array
+     */
+    protected function exclude_gutenberg( array $templates ) : array {
+        $templates[] = \PageMaterials::TEMPLATE;
+
+        return $templates;
     }
 }

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+### Changed
+
+- TMS-760: Remove base theme dependencies #69
+
 ## [1.7.3] - 2022-03-10
 
 ### Added
