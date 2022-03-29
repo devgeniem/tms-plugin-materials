@@ -402,7 +402,7 @@ final class MaterialsPlugin {
     /**
      * Exclude Gutenberg editor
      *
-     * @param array $templates Array of templates
+     * @param array $templates Array of templates.
      *
      * @return array
      */
