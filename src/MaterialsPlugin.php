@@ -370,6 +370,13 @@ final class MaterialsPlugin {
                     return false;
                 }
 
+                $button_sr_text = sprintf(
+                    ' <span class="is-sr-only">%s %s</span>',
+                    __( 'Clicking the link will download file', 'tms-plugin-materials' ),
+                    $file['title']
+                );
+                $button_text    = __( 'Open', 'tms-plugin-materials' ) . $button_sr_text;
+
                 return [
                     'url'         => $file['url'],
                     'title'       => get_the_title( $id ),
@@ -379,7 +386,7 @@ final class MaterialsPlugin {
                     'image'       => ! empty( get_field( 'image', $id ) )
                         ? get_field( 'image', $id )
                         : apply_filters( 'tms/theme/settings/material_default_image', '' ),
-                    'button_text' => __( 'Open', 'tms-plugin-materials' ),
+                    'button_text' => $button_text,
                 ];
             }, $material_ids )
         );
@@ -402,7 +409,7 @@ final class MaterialsPlugin {
     /**
      * Exclude Gutenberg editor
      *
-     * @param array $templates Array of templates
+     * @param array $templates Array of templates.
      *
      * @return array
      */
