@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.7.4] - 2022-04-12
+
 ### Changed
 
 - TMS-685: Add material link sr-text #70
