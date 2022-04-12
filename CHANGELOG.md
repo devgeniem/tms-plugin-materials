@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning][semver].
 
 ### Changed
 
+- TMS-685: Add material link sr-text #70
 - TMS-760: Remove base theme dependencies #69
 
 ## [1.7.3] - 2022-03-10
