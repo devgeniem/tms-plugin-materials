@@ -151,6 +151,19 @@ class MaterialBlock {
             ->set_key( "${key}_materials" )
             ->set_name( 'materials' )
             ->set_post_types( [ Material::SLUG ] )
+            ->redipress_include_search( function ( $materials ) {
+                if ( empty( $materials ) ) {
+                    return '';
+                }
+
+                $results = [];
+
+                foreach ( $materials as $material_id ) {
+                    $results[] = get_the_title( $material_id );
+                }
+
+                return implode( ' ', $results );
+            } )
             ->set_filters( [ 'search' ] )
             ->set_return_format( 'id' )
             ->set_min( 1 )
