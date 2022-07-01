@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+- TMS-855: Include material block choices in search #77
+
 ## [1.7.4] - 2022-04-12
 
 ### Changed
