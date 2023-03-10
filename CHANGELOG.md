@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+- PIEN-8157: PHP 8.1
+
+## [1.7.5] - 2022-08-23
+
+### Changed
+
 - TMS-855: Include material block choices in search #77
+
+### Fixed
+
+- TMS-894: Fix composer
 
 ## [1.7.4] - 2022-04-12
 
