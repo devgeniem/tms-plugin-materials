@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+### Fixed
+
+- PHP 8.2 deprecation fixes
+- Dust-partial escaping filter fixes
+
 ## [1.8.0] - 2022-04-11
 
 - PIEN-8157: PHP 8.1
