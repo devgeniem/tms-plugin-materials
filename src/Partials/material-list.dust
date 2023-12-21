@@ -22,35 +22,35 @@
                             <a href="{url}"
                                class="is-inline-flex is-align-items-center has-text-large has-text-black has-text-weight-semibold is-family-secondary"
                                download>
-                                {title|s}
+                                {title|html}
                                 {>"ui/icon" icon="chevron-right" class="ml-2 icon--medium" /}
                             </a>
 
                             <div class="mt-1 has-text-gray has-line-height-tight is-family-secondary has-text-weight-medium has-text-small has-divider-x-1 has-divider-x-1">
-                                <span class="is-inline-block pr-3 is-uppercase">{filetype}</span>
-                                <span class="is-inline-block ml-2">{filesize|s}</span>
+                                <span class="is-inline-block pr-3 is-uppercase">{filetype|html}</span>
+                                <span class="is-inline-block ml-2">{filesize|htmls}</span>
                             </div>
                         </div>
 
-                        <a href="{url}"
+                        <a href="{url|url}"
                            class="button is-primary is-outlined is-small is-hidden-touch is-align-self-flex-start ml-auto-tablet"
                            download>
-                            {button_text|s}
+                            {button_text|kses}
                         </a>
                     </div>
 
                     {?is_full_view}
                         {?description}
                             <div class="mt-4 has-text-small keep-vertical-spacing">
-                                {description|s}
+                                {description|kses}
                             </div>
                         {/description}
                     {/is_full_view}
 
-                    <a href="{url}"
+                    <a href="{url|url}"
                        class="button is-primary is-outlined is-small is-hidden-desktop mt-4"
                        download>
-                        {button_text|s}
+                        {button_text|kses}
                     </a>
                 </div>
             </li>
