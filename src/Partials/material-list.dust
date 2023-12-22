@@ -28,7 +28,7 @@
 
                             <div class="mt-1 has-text-gray has-line-height-tight is-family-secondary has-text-weight-medium has-text-small has-divider-x-1 has-divider-x-1">
                                 <span class="is-inline-block pr-3 is-uppercase">{filetype|html}</span>
-                                <span class="is-inline-block ml-2">{filesize|htmls}</span>
+                                <span class="is-inline-block ml-2">{filesize|html}</span>
                             </div>
                         </div>
 
