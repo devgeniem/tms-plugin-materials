@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [1.9.0] - 2023-12-22
+
 ### Fixed
 
 - PHP 8.2 deprecation fixes

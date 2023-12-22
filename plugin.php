@@ -3,7 +3,7 @@
  * Plugin Name: TMS Materials
  * Plugin URI: https://github.com/devgeniem/tms-plugin-materials
  * Description: TMS Materials
- * Version: 1.8.0
+ * Version: 1.9.0
  * Requires PHP: 8.1
  * Author: Geniem Oy
  * Author URI: https://geniem.com
