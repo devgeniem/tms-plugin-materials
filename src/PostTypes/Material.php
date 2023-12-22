@@ -192,20 +192,20 @@ class Material {
             $key = $field_group->get_key();
 
             $image_field = ( new Field\Image( $strings['image']['label'] ) )
-                ->set_key( "${key}_image" )
+                ->set_key( "{$key}_image" )
                 ->set_name( 'image' )
                 ->set_return_format( 'id' )
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['image']['instructions'] );
 
             $file_field = ( new Field\File( $strings['file']['label'] ) )
-                ->set_key( "${key}_file" )
+                ->set_key( "{$key}_file" )
                 ->set_name( 'file' )
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['file']['instructions'] );
 
             $description_field = ( new Field\ExtendedWysiwyg( $strings['description']['label'] ) )
-                ->set_key( "${key}_description" )
+                ->set_key( "{$key}_description" )
                 ->set_name( 'description' )
                 ->set_tabs( 'visual' )
                 ->set_toolbar(

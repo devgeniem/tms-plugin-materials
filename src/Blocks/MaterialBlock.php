@@ -27,6 +27,13 @@ class MaterialBlock {
     const NAME = 'material';
 
     /**
+     * The block title.
+     *
+     * @var string
+     */
+    const BLOCK_TITLE = 'Tiedostot';
+
+    /**
      * The block description. Used in WP block navigation.
      *
      * @var string
@@ -86,9 +93,7 @@ class MaterialBlock {
      * Create the block and register it.
      */
     public function __construct() {
-        $this->title = 'Tiedostot';
-
-        $block = new Block( $this->title, static::KEY );
+        $block = new Block( static::BLOCK_TITLE, static::KEY );
         $block->set_category( $this->category );
         $block->set_icon( $this->icon );
         $block->set_description( $this->description );
@@ -148,7 +153,7 @@ class MaterialBlock {
         $key = self::KEY;
 
         $materials_field = ( new Field\Relationship( $strings['materials']['label'] ) )
-            ->set_key( "${key}_materials" )
+            ->set_key( "{$key}_materials" )
             ->set_name( 'materials' )
             ->set_post_types( [ Material::SLUG ] )
             ->redipress_include_search( function ( $materials ) {
@@ -171,7 +176,7 @@ class MaterialBlock {
             ->set_instructions( $strings['materials']['instructions'] );
 
         $layout_field = ( new Field\Radio( $strings['layout']['label'] ) )
-            ->set_key( "${key}_layout" )
+            ->set_key( "{$key}_layout" )
             ->set_name( 'layout' )
             ->set_choices( [
                 'simple' => 'Yksinkertainen',

@@ -14,7 +14,7 @@
                             </h1>
 
                             {?description}
-                                <p>{description|s}</p>
+                                <p>{description|kses}</p>
                             {/description}
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="column is-6 is-offset-2-fullhd is-4-fullhd">
-                            <form class="p-2" action="{search.action|s}" method="get" role="search">
+                            <form class="p-2" action="{search.action|attr}" method="get" role="search">
                                 {>"ui/input-text" label=strings.search.label name=search.input_search_name value=search.current_search placeholder=strings.search.input_placeholder /}
                                 {>"ui/button-search-submit" text=strings.search.submit_value class=layout_classes.submit_classes /}
                             </form>
@@ -36,7 +36,7 @@
 
                     <div class="page-materials__results columns">
                         {?PageMaterials.results.summary}
-                            <p class="is-sr-only">{PageMaterials.results.summary|s}</p>
+                            <p class="is-sr-only">{PageMaterials.results.summary|kses}</p>
                         {/PageMaterials.results.summary}
 
                         <div class="column is-10-fullhd is-offset-1-fullhd">
@@ -49,7 +49,7 @@
 
                             {:else}
                                 <div class="has-text-centered h5 mt-7 mb-7 mt-12-desktop mb-12-desktop">
-                                    {strings.no_results|s}
+                                    {strings.no_results|html}
                                 </div>
                             {/results.items}
                         </div>
