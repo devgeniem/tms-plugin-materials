@@ -1,13 +1,13 @@
 {?terms}
-    <ul class="is-unstyled is-flex is-flex-wrap-wrap" aria-label="{strings.terms.aria_label|s}">
+    <ul class="is-unstyled is-flex is-flex-wrap-wrap" aria-label="{strings.terms.aria_label|attr}">
         {#terms}
             <li class="p-2">
-                <a href="{permalink|u}#main-content" class="pill {link_classes|s}" {link_attributes|s}>
+                <a href="{permalink|url}#main-content" class="pill {link_classes|attr}" {link_attributes|attr}>
                     {?is_active}
                         {>"ui/icon" icon="checkmark" class="icon--medium mr-2" /}
                     {/is_active}
 
-                    {name|s}
+                    {name|html}
                 </a>
             </li>
         {/terms}

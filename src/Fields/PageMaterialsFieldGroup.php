@@ -93,7 +93,7 @@ class PageMaterialsFieldGroup {
         ];
 
         $description_field = ( new Field\Textarea( $strings['description']['label'] ) )
-            ->set_key( "${key}_description" )
+            ->set_key( "{$key}_description" )
             ->set_name( 'description' )
             ->set_instructions( $strings['description']['instructions'] );
 
@@ -117,7 +117,7 @@ class PageMaterialsFieldGroup {
         ];
 
         $materials_field = ( new Field\Relationship( $strings['materials']['label'] ) )
-            ->set_key( "${key}_materials" )
+            ->set_key( "{$key}_materials" )
             ->set_name( 'materials' )
             ->set_post_types( [ Material::SLUG ] )
             ->set_filters( [ 'search' ] )
@@ -144,7 +144,7 @@ class PageMaterialsFieldGroup {
         ];
 
         $material_types_field = ( new Field\Taxonomy( $strings['material_types']['label'] ) )
-            ->set_key( "${key}_material_types" )
+            ->set_key( "{$key}_material_types" )
             ->set_name( 'material_types' )
             ->set_instructions( $strings['material_types']['instructions'] )
             ->set_taxonomy( 'material_type-tax' )

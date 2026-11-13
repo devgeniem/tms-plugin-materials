@@ -55,7 +55,7 @@ class AccordionFileLayout extends Layout {
 
         try {
             $materials_field = ( new Field\Relationship( $strings['materials']['label'] ) )
-                ->set_key( "${key}_materials" )
+                ->set_key( "{$key}_materials" )
                 ->set_name( 'materials' )
                 ->set_post_types( [ Material::SLUG ] )
                 ->set_filters( [ 'search' ] )
